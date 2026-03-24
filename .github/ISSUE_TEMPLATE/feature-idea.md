@@ -7,8 +7,6 @@ assignees: ''
 
 ---
 
----
-
 ## Feature Idea
 *(Briefly describe the new feature or improvement.)*
 
