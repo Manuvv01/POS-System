@@ -1,5 +1,5 @@
 ---
-name: Feature_Idea
+name: Feature Idea
 about: Describes the feature idea in deep
 title: ''
 labels: ''
