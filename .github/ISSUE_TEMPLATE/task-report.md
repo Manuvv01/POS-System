@@ -24,5 +24,16 @@ assignees: ''
 
 ---
 
+## Input Validation / Error Handling
+*(Make sure invalid input does not crash the system; add checks, error messages, and safeguards.)*
+
+- [ ] Validate numeric inputs (e.g., prices, quantities)  
+- [ ] Handle empty or missing fields gracefully  
+- [ ] Prevent negative numbers or unrealistic values  
+- [ ] Show user-friendly error messages for invalid input  
+- [ ] Ensure system does not crash on unexpected input  
+
+---
+
 ## Additional Notes
 *(Optional: links, mockups, references, or special instructions.)*
