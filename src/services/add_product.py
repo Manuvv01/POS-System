@@ -1,3 +1,4 @@
+#TODO Refactor the input validation for whitespaces
 def add_by_scan(product):
     while True:
         barcode = input("Escanee el codigo de barras").strip()

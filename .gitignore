@@ -209,3 +209,10 @@ __marimo__/
 # Files for my project
 *.csv
 *.xlsx
+
+#Files in data
+data/
+
+#Jupyter
+.ipynb_checkpoints/
+
