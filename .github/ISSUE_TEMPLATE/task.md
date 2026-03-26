@@ -1,15 +1,25 @@
 ---
-name: Task Report
-about: 'To describe the problem and tasks '
+name: Task
+about: To describe the task and implementation plan
 title: ''
 labels: ''
 assignees: ''
 
 ---
 
-## Task Report
+## Task 
 ## Description
 *(Describe what needs to be done, why it’s important, and any context.)*
+
+---
+
+## Implementation Plan  
+*(Outline the logic or flow before coding. Use pseudocode or step-by-step reasoning.)*
+
+    1. 
+    2. 
+    3. 
+    4. 
 
 ---
 
@@ -33,6 +43,13 @@ assignees: ''
 - [ ] Ensure system does not crash on unexpected input  
 
 ---
+
+## Expected Outcome  
+*(What should happen when this task is completed?)*
+
+- The feature works as intended  
+- No crashes occur during execution  
+- The system remains stable and consistent
 
 ## Additional Notes
 *(Optional: links, mockups, references, or special instructions.)*

@@ -13,19 +13,10 @@ assignees: ''
 ---
 
 ## How It Might Work
-*(Optional: Describe a possible implementation, flow, or behavior.)*
+
+
 
 ---
-
-## Checklist
-1. [ ] 
-2. [ ] 
-3. [ ] 
-4. [ ] 
-5. [ ] 
-
----
-
 
 ## Additional Notes / References
 *(Optional: Include mockups, links, or related issues.)*
