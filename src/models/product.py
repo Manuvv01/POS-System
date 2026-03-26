@@ -37,5 +37,30 @@ class Product:
                   f"Category: {self.category}")
         return string
 
-#item = Product(barcode="1254", name="Milk", price=25.0, quantity=25, category="Milks and cheese")
-#item2 = Product(name="Leche", price=25.0, quantity=25, category="Milks and cheese")
+
+
+#Testing Purposes
+# product1 = Product(
+#     barcode="7501031311309",
+#     name="Leche 1L",
+#     price=25.50,
+#     quantity=2,
+#     category="Lácteos"
+# )
+#
+# product2 = Product(
+#     barcode="7501000123456",
+#     name="Pan Bimbo",
+#     price=35.00,
+#     quantity=5,
+#     category="Panadería"
+# )
+#
+# product3 = Product(
+#     barcode="7501000654321",
+#     name="Coca Cola 600ml",
+#     price=22.00,
+#     quantity=10,
+#     category="Bebidas"
+# )
+
