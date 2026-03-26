@@ -9,7 +9,7 @@ class Product:
         quantity (int): Quantity in stock.
         category (str): Category of the product.
     """
-    def __init__(self, barcode= None, name= None, price = 0.0, quantity = 0, category = None):
+    def __init__(self, name= None, barcode= None,  price = 0.0, quantity = 0, category = None):
         """
         Initializes a Product instance.
 
@@ -20,17 +20,17 @@ class Product:
             quantity (int): Product stock quantity.
             category (str): Product category.
         """
-        self.barcode = barcode
         self.name = name
+        self.barcode = barcode
         self.price = price
         self.quantity = quantity
         self.category = category
 
     def __repr__(self):
-        return f'Product{self.barcode, self.name, self.price, self.quantity, self.category}'
+        return f'Product{self.name, self.barcode, self.price, self.quantity, self.category}'
 
     def __str__(self):
-        string = (f"Barcode: {self.barcode}\n"
+        string = (f"SKU: {self.barcode}\n"
                   f"Name: {self.name}\n"
                   f"Price: {self.price}\n"
                   f"Quantity: {self.quantity}\n"

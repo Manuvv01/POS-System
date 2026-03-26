@@ -1,5 +1,7 @@
+from itertools import product
+
 from models.product import Product
-from services.spreadsheet import add_row
+from services.spreadsheet import add_row, create_spreasdsheet
 
 def debug():
     product1 = Product(
@@ -10,7 +12,8 @@ def debug():
         category="Lácteos"
     )
 
-    
+    create_spreasdsheet()
+    add_row(product1)
 
 
 def main():

@@ -11,7 +11,7 @@ import os
 def get_path():
     # TODO: excl_file should be as input
     excl_file = "tortilleria.xlsx"
-    file_path = "../data/" + excl_file
+    file_path = "data/" + excl_file
     return file_path
 
 def create_spreasdsheet():
@@ -20,7 +20,7 @@ def create_spreasdsheet():
 
     #dataframe creation
     if not os.path.exists(file_path):
-        df = pd.DataFrame(columns= ["Codigo de Barras", "Nombre","Precio", "Cantidad", "Categoria"])
+        df = pd.DataFrame(columns= ["Nombre","SKU", "Precio", "Cantidad", "Categoria"])
         df.to_excel(file_path, index= False)
         print("Archivo creado")
     else:
@@ -42,8 +42,8 @@ def add_row(item):
         path = "data/tortilleria.xlsx" #Note: Make sure the path should be where it was excecuted
         df= pd.read_excel(path)
 
-        new_product = {"Codigo de Barras": item.barcode,
-                       "Nombre": item.name,
+        new_product = {"Nombre": item.name,
+                       "SKU": item.barcode,
                        "Precio": item.price,
                        "Cantidad":item.quantity,
                        "Categoria":item.category
