@@ -1,7 +1,9 @@
 import tkinter as tk
+from services import spreadsheet
 
 def do_nothing():
     pass
+
 
 def run_app():
     # Window creation
@@ -12,10 +14,11 @@ def run_app():
     entry = tk.Entry(root)
     entry.pack(pady=10)
 
-    button = tk.Button(root, text="Add Item", command= do_nothing)
+    button = tk.Button(root, text="Add Item", command= spreadsheet.create_spreasdsheet)
     button.pack(pady=10)
 
     label = tk.Label(root, text="")
     label.pack(pady=10)
 
     root.mainloop()
+

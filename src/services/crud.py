@@ -64,4 +64,3 @@ def add_by_manual(product):
     # Creates the Product object
     item = product(name= name, price= price, quantity= quantity, category= category)
     return item
-

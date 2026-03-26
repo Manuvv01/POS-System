@@ -1,5 +1,4 @@
-from itertools import product
-
+import ui.app as ui
 from models.product import Product
 from services.spreadsheet import add_row, create_spreasdsheet
 
@@ -12,12 +11,11 @@ def debug():
         category="Lácteos"
     )
 
-    create_spreasdsheet()
     add_row(product1)
 
 
 def main():
-    debug()
+   debug()
 
 
 if __name__ == "__main__":
