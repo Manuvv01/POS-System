@@ -7,7 +7,6 @@ additional spreadsheet operations as needed.
 """
 import pandas as pd
 import os
-from crud import update
 
 def get_path():
     # TODO: excl_file should be as input
@@ -28,16 +27,22 @@ def create_spreasdsheet():
         print("El archivo ya existe")
 
 
-def add_row(item):
+def read_rows(name):
     """"
         Adds a new item to the spreadsheet
 
-    Args: item (Product): The item of a type class Product
+    Args:
+        name (str): The name of the product
 
     Returns:
         None
 
     """
+    pass
+
+
+def add_row(item):
+
     try:
 
         path = "data/tortilleria.xlsx" #Note: Make sure the path should be where it was excecuted
@@ -60,11 +65,43 @@ def add_row(item):
 
 #TODO: Update spreadsheet
 def update_spreadsheet():
-    pass
+    """
+    :param:
+        None
 
+    :return:
+    """
+    # Read the Excel and convert it to a Dataframe
+    path = "data/tortilleria.xlsx"  # Note: Make sure the path should be where it was excecuted
+    df = pd.read_excel(path)
 
+    #get the old and new values.
+    column = ""
+    name = ""
+    new = ""
+
+    # Update by name
+    if column == 'Nombre':
+        df.loc[df['Nombre'] == name, 'Nombre'] = new
+    # Update by SKU
+    elif column == 'SKU':
+        df.loc[df['Nombre'] == name, 'SKU'] = new
+    # Update by price
+    elif column == 'Precio':
+        df.loc[df['Nombre'] == name, 'Precio'] = new
+    # Update by quantity
+    elif column == 'Cantidad':
+        df.loc[df['Nombre'] == name, 'Cantidad'] = new
+    # Update by category
+    elif column == 'Categoria':
+        df.loc[df['Nombre'] == name, 'Categoria'] = new
+    else:
+        print("Columna no encontrada")
+
+    #Save
+    df.to_excel(path, index=False)
+
+    print(f"{column} actualizado")
 
 #TODO: Delete spreadsheet
-
-
 

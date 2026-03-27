@@ -1,3 +1,6 @@
+"""
+Does operations that will affect the Product object
+"""
 #TODO: Refactor the input validation for whitespaces
 def add_by_scan(product):
     while True:
@@ -64,3 +67,23 @@ def add_by_manual(product):
     # Creates the Product object
     item = product(name= name, price= price, quantity= quantity, category= category)
     return item
+
+def update_conditions():
+    """
+        Function that will update the variable object
+    :param:
+        product (Product): variable of class Product
+    :return:
+        An object of type product
+    """
+
+    #Prompt the user to get the old value
+    name = input("Escriba el nombre del producto: ")
+    #Prompt the user to enter the column
+    column = input("Que desea cambiar(Nombre, SKU, Precio, Cantidad, Categoria): ")
+    #Prompt the user to enter the new value
+    new = input("Escriba el nuevo valor: ")
+
+    #Returns the name and the parameter to be changed
+    return name, column, new
+
