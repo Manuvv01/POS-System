@@ -59,7 +59,7 @@ User stories (labeled as **user stories** in GitHub issues) were created to iden
 The project uses GitHub issues to track tasks, organized with labels:
 
 - **In Progress** – Issues currently being worked on  
-- **Backlog / Todo** – Tasks planned for future sprints  
+- **Todo** – Tasks planned for future sprints  
 - **Completed** – Issues that have been finished  
 
 You can explore the repository and issues to see the development process in detail.
