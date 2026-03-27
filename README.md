@@ -10,7 +10,7 @@ This project is a full-stack desktop application using Python for the backend, w
 - Python (backend, Tkinter UI)  
 - React (frontend)  
 - Electron (desktop integration)  
-- Spreadsheets 
+- Spreadsheet-based data storage (Excel)
 
 ---
 
@@ -18,9 +18,18 @@ This project is a full-stack desktop application using Python for the backend, w
 
 All libraries used in the project for development are listed in `requirements_dev.txt`. The ones most frequently used are:
 
-- Pandas
-- Openpyxl
-- Jupyter Notebook (Data Analysis)
+- Pandas  
+- Openpyxl  
+- Jupyter Notebook (for data analysis)
+
+---
+
+## Features
+
+- Add products to inventory  
+- Store product data in spreadsheets  
+- Manage product information (name, price, quantity)  
+- Designed to support barcode scanning 
 
 ---
 
@@ -37,7 +46,7 @@ Modern frontend implementation using React.
 ### 3. Electron App
 Integration of the React frontend with the Python backend to create a full desktop application.
 
-The process is first to implement the essential features in a simple interface, then gradually improve usability and functionality.
+The approach is to first implement the essential features in a simple interface, then gradually improve usability and functionality.
 
 ---
 
@@ -51,6 +60,6 @@ The project uses GitHub issues to track tasks, organized with labels:
 
 - **In Progress** – Issues currently being worked on  
 - **Backlog / Todo** – Tasks planned for future sprints  
-- **Completed** – Issues that have been finished
+- **Completed** – Issues that have been finished  
 
 You can explore the repository and issues to see the development process in detail.
