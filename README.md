@@ -14,7 +14,7 @@ This project is a full-stack desktop application using Python for the backend, w
 
 ---
 
-##Libraries
+## Libraries
 
 All libraries used in the project for development are listed in `requirements_dev.txt`. The ones most frequently used are:
 
