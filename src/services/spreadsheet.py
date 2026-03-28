@@ -5,6 +5,7 @@ This module provides functions to create, read, write, and update
 product data in Excel or CSV format. It can be extended to support
 additional spreadsheet operations as needed.
 """
+from src.config import DATA_FILE
 import pandas as pd
 import os
 
@@ -50,8 +51,7 @@ def add_row(item):
 
     try:
 
-        path = "data/tortilleria.xlsx" #Note: Make sure the path should be where it was excecuted
-        df= pd.read_excel(path)
+        df= pd.read_excel(DATA_FILE)
 
         new_product = {"Nombre": item.name,
                        "SKU": item.barcode,
@@ -62,8 +62,8 @@ def add_row(item):
 
         df = pd.concat([df, pd.DataFrame([new_product])], ignore_index=True)
 
-        df.to_excel(path, index=False)
-        print("Excel updated successfully!")
+        df.to_excel(DATA_FILE, index=False)
+        print("Nueva Linea Agregada")
 
     except FileNotFoundError:
         print("Error: File Not Found")

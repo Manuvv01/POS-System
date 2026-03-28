@@ -48,19 +48,5 @@ class Product:
 #     category="Lácteos"
 # )
 #
-# product2 = Product(
-#     barcode="7501000123456",
-#     name="Pan Bimbo",
-#     price=35.00,
-#     quantity=5,
-#     category="Panadería"
-# )
-#
-# product3 = Product(
-#     barcode="7501000654321",
-#     name="Coca Cola 600ml",
-#     price=22.00,
-#     quantity=10,
-#     category="Bebidas"
-# )
+
 
