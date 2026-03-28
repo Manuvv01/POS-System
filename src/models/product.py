@@ -9,7 +9,7 @@ class Product:
         quantity (int): Quantity in stock.
         category (str): Category of the product.
     """
-    def __init__(self, name= None, barcode= None,  price = 0.0, quantity = 0, category = None):
+    def __init__(self, name= None, barcode= None,  price = 0.0, quantity = 0, category = "General"):
         """
         Initializes a Product instance.
 

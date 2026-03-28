@@ -15,6 +15,11 @@ def get_path():
     return file_path
 
 def create_spreasdsheet():
+    """
+    Checks if the spreadsheet, if not creates the file, if yes displays a message
+
+    :return: None
+    """
 
     file_path = get_path()
 
@@ -76,9 +81,9 @@ def update_spreadsheet():
     df = pd.read_excel(path)
 
     #get the old and new values.
-    column = ""
-    name = ""
-    new = ""
+    column = "Name"
+    name = "Leche 1L"
+    new = "Leche 500ml"
 
     # Update by name
     if column == 'Nombre':

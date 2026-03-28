@@ -1,8 +1,16 @@
 """
 Does operations that will affect the Product object
 """
-#TODO: Refactor the input validation for whitespaces
+
 def add_by_scan(product):
+    """
+    Assigns the values from the user and creates a variable from the Product class
+    
+    :param:
+        product: Product object
+    :return:
+        An item of a Product object
+    """
     while True:
         barcode = input("Escanee el codigo de barras").strip()
         if barcode != "":
@@ -39,6 +47,15 @@ def add_by_scan(product):
     return item
 
 def add_by_manual(product):
+    """
+    Assigns the values from the user and creates a variable from the Product class
+
+    :param:
+        product: Product object
+    :return:
+        An item of a Product object
+    """
+
     while True:
         name = input("Nombre: ").strip()
         if name != "":
@@ -86,4 +103,3 @@ def update_conditions():
 
     #Returns the name and the parameter to be changed
     return name, column, new
-
