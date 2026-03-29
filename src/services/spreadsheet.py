@@ -18,7 +18,8 @@ def get_path():
 
 def create_spreasdsheet():
     """
-    Checks if the spreadsheet, if not creates the file, if yes displays a message
+    Gets the path where the file is going to be located. If the file doesn't exist in the path creates a Dataframe with
+    their columns and saves it as an Excel, otherwise displays a message saying that the file exist.
 
     :return: None
     """
@@ -27,56 +28,70 @@ def create_spreasdsheet():
 
     #dataframe creation
     if not os.path.exists(file_path):
-        df = pd.DataFrame(columns= ["Nombre","SKU", "Precio", "Cantidad", "Categoria"])
+        df = pd.DataFrame(columns= ["Nombre","SKU", "Precio", "Cantidad", "Categoria"]) #Creates the columns
         df.to_excel(file_path, index= False)
         print("Archivo creado")
     else:
         print("El archivo ya existe")
 
 
-def read_rows(column, x):
+def read_rows(column, data):
     """
-    Reads the item from the spreadsheet
+    If the file exist reads it as a dataframe, if the column is not in the dataframe raises a value error, else locates
+    the rows with the columns that contains the information, assign it in a variable and returns.
+
+    :param:
+        column (str): String that shows the column of the file
+        info (str): String information of the data
+
     :return:
     """
-    try:
-        df = pd.read_excel(DATA_FILE)
-    except FileNotFoundError:
-        raise FileNotFoundError("Data file not found")
-    
+
+    ensure_file_exists(DATA_FILE)
+    df = pd.read_excel(DATA_FILE)
+
     if column not in df.columns:
         raise ValueError(f"La columna '{column}' no existe.")
-
-    searched_rows = df.loc[df[column] == x]
+    else:
+        searched_rows = df.loc[df[column] == data]
 
     return searched_rows
 
 
 
 def add_row(item):
+    """
+    Reads the Excel file and converts it to a dataframe, creates a dictionary with the attributes of the Product class
+    and assigns it in a variable then adds it to the dataframe and saves it in the Excel.
 
-    try:
+    :param:
+        item: item of a Product class type
+    :return:
+    """
 
-        df= pd.read_excel(DATA_FILE)
+    ensure_file_exists(DATA_FILE)
 
-        new_product = {"Nombre": item.name,
-                       "SKU": item.barcode,
-                       "Precio": item.price,
-                       "Cantidad":item.quantity,
-                       "Categoria":item.category
-        }
+    df= pd.read_excel(DATA_FILE)
 
-        df = pd.concat([df, pd.DataFrame([new_product])], ignore_index=True)
 
-        df.to_excel(DATA_FILE, index=False)
-        print("Nueva Linea Agregada")
+    new_product = {"Nombre": item.name,
+                    "SKU": item.barcode,
+                    "Precio": item.price,
+                    "Cantidad":item.quantity,
+                    "Categoria":item.category
+                   }
 
-    except FileNotFoundError:
-        print("Error: File Not Found")
+    df = pd.concat([df, pd.DataFrame([new_product])], ignore_index=True)
+
+    df.to_excel(DATA_FILE, index=False)
+    print("Nueva Linea Agregada")
+
 
 #TODO: Update spreadsheet
 def update_spreadsheet():
     """
+    Reads the file, takes the variable, updates the row depending on the column, saves and displays a message.
+
     :param:
         None
 
