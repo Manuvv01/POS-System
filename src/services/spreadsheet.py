@@ -6,6 +6,7 @@ product data in Excel or CSV format. It can be extended to support
 additional spreadsheet operations as needed.
 """
 from src.config import DATA_FILE
+from src.utils.utilities import ensure_file_exists
 import pandas as pd
 import os
 
@@ -33,18 +34,23 @@ def create_spreasdsheet():
         print("El archivo ya existe")
 
 
-def read_rows(name):
-    """"
-        Adds a new item to the spreadsheet
-
-    Args:
-        name (str): The name of the product
-
-    Returns:
-        None
-
+def read_rows(column, x):
     """
-    pass
+    Reads the item from the spreadsheet
+    :return:
+    """
+    try:
+        df = pd.read_excel(DATA_FILE)
+    except FileNotFoundError:
+        raise FileNotFoundError("Data file not found")
+    
+    if column not in df.columns:
+        raise ValueError(f"La columna '{column}' no existe.")
+
+    searched_rows = df.loc[df[column] == x]
+
+    return searched_rows
+
 
 
 def add_row(item):

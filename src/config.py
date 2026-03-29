@@ -1,3 +1,6 @@
+"""
+Always finds the path of the Excel file
+"""
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
