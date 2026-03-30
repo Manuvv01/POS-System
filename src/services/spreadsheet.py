@@ -10,11 +10,13 @@ from src.utils.utilities import ensure_file_exists
 import pandas as pd
 import os
 
+#TODO: Delete this func and use ensure_file_exist in the other funcs
 def get_path():
-    # TODO: excl_file should be as input
+
     excl_file = "tortilleria.xlsx"
     file_path = "data/" + excl_file
     return file_path
+
 
 def create_spreasdsheet():
     """
@@ -24,7 +26,7 @@ def create_spreasdsheet():
     :return: None
     """
 
-    file_path = get_path()
+    file_path = get_path() # TODO: Debug
 
     #dataframe creation
     if not os.path.exists(file_path):
@@ -42,7 +44,7 @@ def read_rows(column, data):
 
     :param:
         column (str): String that shows the column of the file
-        info (str): String information of the data
+        data (str): String information of the data
 
     :return:
     """
@@ -50,12 +52,13 @@ def read_rows(column, data):
     ensure_file_exists(DATA_FILE)
     df = pd.read_excel(DATA_FILE)
 
+    #TODO: Make this a function in utils
     if column not in df.columns:
         raise ValueError(f"La columna '{column}' no existe.")
     else:
-        searched_rows = df.loc[df[column] == data]
+        search_row = df.loc[df[column] == data]
 
-    return searched_rows
+    return search_row
 
 
 
@@ -87,7 +90,6 @@ def add_row(item):
     print("Nueva Linea Agregada")
 
 
-#TODO: Update spreadsheet
 def update_spreadsheet():
     """
     Reads the file, takes the variable, updates the row depending on the column, saves and displays a message.
@@ -97,14 +99,16 @@ def update_spreadsheet():
 
     :return:
     """
-    # Read the Excel and convert it to a Dataframe
-    path = "data/tortilleria.xlsx"  # Note: Make sure the path should be where it was excecuted
-    df = pd.read_excel(path)
+
+    ensure_file_exists(DATA_FILE)
+    df= pd.read_excel(DATA_FILE)
 
     #get the old and new values.
     column = "Name"
     name = "Leche 1L"
     new = "Leche 500ml"
+
+    #TODO: Raise an exception if column is not in the dataframe
 
     # Update by name
     if column == 'Nombre':
@@ -125,9 +129,28 @@ def update_spreadsheet():
         print("Columna no encontrada")
 
     #Save
-    df.to_excel(path, index=False)
+    df.to_excel(DATA_FILE, index=False)
 
     print(f"{column} actualizado")
 
-#TODO: Delete spreadsheet
 
+def delete_row(column, name):
+    """
+    Deletes the index of the row in the dataframne by certain conditions.
+
+    :param:
+        column (str): A string that takes the name of the column
+        info (str): Name of the data that needs to find
+    :return:
+    """
+    ensure_file_exists(DATA_FILE)
+    df = pd.read_excel(DATA_FILE)
+
+    #Deletes the index of the row that satisfy the condition
+
+    if column not in df.columns:
+        raise ValueError(f"La columna '{column}' no existe.")
+    else:
+        df = df.drop(df[df[column] == name].index)
+        df.to_excel(DATA_FILE, index=False)
+        print("Linea borrada")

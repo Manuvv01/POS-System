@@ -2,7 +2,7 @@
 Manual testing for functions
 """
 
-from src.services.spreadsheet import add_row
+from src.services.spreadsheet import add_row,delete_row
 from src.models.product import Product
 
 def test_add_row():
@@ -25,5 +25,11 @@ def test_add_row():
     add_row(product2)
     add_row(product3)
 
+def test_delete_row():
+    column = "Nombre"
+    info = "Pan Bimbo"
+
+    delete_row(column, info)
+
 if __name__ == "__main__":
-    test_add_row()
+    test_delete_row()
