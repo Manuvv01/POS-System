@@ -5,6 +5,7 @@ Manual testing for functions
 import pandas
 from src.services.spreadsheet import add_row,delete_row,read_rows
 from src.models.product import Product
+from src.utils.mappers import df_to_Product
 
 def test_add_row():
     product3 = Product(
@@ -86,12 +87,14 @@ def test_delete_row():
 
     delete_row(column, info)
 
-def test_read_rows():
+def test_df_to_Product():
     column = "SKU"
     data = 7501000112233
     df = read_rows(column, data)
 
-    print(df)
+    product_obj= df_to_Product(df,Product)
+    print(type(product_obj))
+
 
 if __name__ == "__main__":
-    test_read_rows()
+    test_df_to_Product()
