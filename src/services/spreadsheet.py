@@ -44,7 +44,7 @@ def read_rows(column, data):
 
     :param:
         column (str): String that shows the column of the file
-        data (str): String information of the data
+        data (int): data of the product by SKU
 
     :return:
     """
@@ -55,8 +55,8 @@ def read_rows(column, data):
     #TODO: Make this a function in utils
     if column not in df.columns:
         raise ValueError(f"La columna '{column}' no existe.")
-    else:
-        search_row = df.loc[df[column] == data]
+
+    search_row = df.loc[df[column] == data]
 
     return search_row
 
