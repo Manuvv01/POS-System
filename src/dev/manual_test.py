@@ -2,10 +2,10 @@
 Manual testing for functions
 """
 
-import pandas
 from src.services.spreadsheet import add_row,delete_row,read_rows
 from src.models.product import Product
 from src.utils.mappers import df_to_Product
+from src.services.check_sys import check_system
 
 def test_add_row():
     product3 = Product(
@@ -97,4 +97,4 @@ def test_df_to_Product():
 
 
 if __name__ == "__main__":
-    test_df_to_Product()
+    check_system()

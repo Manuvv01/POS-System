@@ -23,7 +23,6 @@ def create_spreasdsheet():
     Gets the path where the file is going to be located. If the file doesn't exist in the path creates a Dataframe with
     their columns and saves it as an Excel, otherwise displays a message saying that the file exist.
 
-    :return: None
     """
 
     file_path = get_path() # TODO: Debug
@@ -46,7 +45,6 @@ def read_rows(column, data):
         column (str): String that shows the column of the file
         data (int): data of the product by SKU
 
-    :return:
     """
 
     ensure_file_exists(DATA_FILE)
@@ -69,7 +67,7 @@ def add_row(item):
 
     :param:
         item: item of a Product class type
-    :return:
+
     """
 
     ensure_file_exists(DATA_FILE)
@@ -94,10 +92,6 @@ def update_spreadsheet():
     """
     Reads the file, takes the variable, updates the row depending on the column, saves and displays a message.
 
-    :param:
-        None
-
-    :return:
     """
 
     ensure_file_exists(DATA_FILE)
@@ -141,7 +135,7 @@ def delete_row(column, name):
     :param:
         column (str): A string that takes the name of the column
         info (str): Name of the data that needs to find
-    :return:
+
     """
     ensure_file_exists(DATA_FILE)
     df = pd.read_excel(DATA_FILE)
