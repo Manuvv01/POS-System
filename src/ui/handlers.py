@@ -9,6 +9,14 @@ import tkinter as tk
 from src.services.outputs import display_scannedItem
 
 def add_to_textbox(event, text_box, barcode_entry):
+    """
+    Gets the barcode and displays the name and the price in the textbox
+
+    :param
+        text_box (tkinter): Textbox
+        barcode_entry (tkinter): The entry for the barcode
+
+    """
     column = "SKU"
     sku = int(barcode_entry.get().strip())  # Barcode from the entry
     item = display_scannedItem(column, data=sku)
