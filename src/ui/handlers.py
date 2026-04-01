@@ -18,7 +18,9 @@ def add_to_textbox(event, text_box, barcode_entry):
 
     """
     column = "SKU"
-    sku = int(barcode_entry.get().strip())  # Barcode from the entry
+    sku = int(barcode_entry.get().strip())  #Barcode from the entry
     item = display_scannedItem(column, data=sku)
+    text_box.config(state="normal")  #Box typing is enable
     text_box.insert(tk.END, item + "\n")
-    barcode_entry.delete(0, tk.END)  # clear input
+    text_box.config(state="disabled")  #Box typing is disabled
+    barcode_entry.delete(0, tk.END)  #Clear input
