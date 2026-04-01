@@ -3,16 +3,9 @@ UI Using TKINTER
 """
 import tkinter as tk
 from src.services.outputs import display_scannedItem
+from src.ui.handlers import add_to_textbox
 
 def run_app():
-
-    def add_to_textbox(event):
-        column= "SKU"
-        sku = int(barcode_entry.get().strip()) #Barcode from the entry
-        item = display_scannedItem(column, data= sku)
-        text_box.insert(tk.END, item + "\n")
-        barcode_entry.delete(0, tk.END)  # clear input
-
 
     # Window creation
     root = tk.Tk()
@@ -30,7 +23,8 @@ def run_app():
     barcode_entry.grid(row=1, column=1,  pady=10, sticky="w")
     root.grid_columnconfigure(1, weight=1)
 
-    barcode_entry.bind("<Return>", add_to_textbox)
+    barcode_entry.bind("<Return>",
+                       func= lambda event: add_to_textbox(event, text_box, barcode_entry))
 
     root.mainloop()
 
