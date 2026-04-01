@@ -2,16 +2,16 @@
 UI Using TKINTER
 """
 import tkinter as tk
-#from src.services.spreadsheet import
+from src.services.outputs import display_scannedItem
 
 def run_app():
 
     def add_to_textbox(event):
         column= "SKU"
-        sku = barcode_entry.get() #Barcode from the entry
-        if sku.strip() != "":
-            text_box.insert(tk.END, sku + "\n")
-            barcode_entry.delete(0, tk.END)  # clear input
+        sku = int(barcode_entry.get().strip()) #Barcode from the entry
+        item = display_scannedItem(column, data= sku)
+        text_box.insert(tk.END, item + "\n")
+        barcode_entry.delete(0, tk.END)  # clear input
 
 
     # Window creation
