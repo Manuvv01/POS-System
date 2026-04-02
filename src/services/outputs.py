@@ -14,8 +14,10 @@ def display_scannedItem(column, data):
         data (int): data of the product by SKU
 
     """
+    NAME_WIDTH = 30
+    PRICE_WIDTH = 8
     df = read_rows(column, data)
 
     product_obj= df_to_Product(df,Product)
-    product_str= f"{product_obj.name}    ${product_obj.price}"
+    product_str = f"{product_obj.name:<{NAME_WIDTH}} ${product_obj.price:>{PRICE_WIDTH}.2f}"
     return product_str

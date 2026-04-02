@@ -15,10 +15,10 @@ def run_app():
     # Window creation
     root = tk.Tk()
     root.title("Punto de Venta")
-    root.geometry("1200x650")
+    root.state("zoomed")
 
     #Textbox
-    text_box = tk.Text(root, height= 17, width= 100, state= "disabled", font=("Arial", 20))
+    text_box = tk.Text(root, height= 17, width= 100, state= "disabled", font=("Courier New", 20))
     text_box.grid(row= 0, column= 0, columnspan= 2, padx= 10, pady= 10, sticky= "w")
 
     #Barcode
@@ -43,13 +43,27 @@ def run_app():
     delete_button.grid(row=0, column=2, padx=5)
 
     # Total Price section
-    tk.Label(buttons_frame, text="Total", font=("Arial", 20)).grid(row=1, column=0, columnspan=3, sticky="w", pady=(10, 0))
-    total_price_box = tk.Text(buttons_frame, height=8, width=30, font=("Arial", 20))
+    tk.Label(buttons_frame, text="Total", font=("Arial", 20)) \
+        .grid(row=1, column=0, columnspan=3, sticky="w", pady=(10, 0))
+
+    total_price_box = tk.Text(buttons_frame, height=4, width=30,
+                              font=("Courier New", 20), state="disabled")
     total_price_box.grid(row=2, column=0, columnspan=3, sticky="w", pady=(0, 10))
 
+    # Money input
+    tk.Label(buttons_frame, text="Ingrese Efectivo", font=("Arial", 20)) \
+        .grid(row=3, column=0, columnspan=3, sticky="w")
+
+    money_box = tk.Text(buttons_frame, height=1, width=30,
+                        font=("Courier New", 20))
+    money_box.grid(row=4, column=0, columnspan=3, sticky="w", pady=(0, 10))
+
     # Change section
-    tk.Label(buttons_frame, text="Change", font=("Arial", 20)).grid(row=3, column=0, columnspan=3, sticky="w")
-    change_box = tk.Text(buttons_frame, height=5, width=30, font=("Arial", 20))
-    change_box.grid(row=4, column=0, columnspan=3, sticky="w")
+    tk.Label(buttons_frame, text="Cambio", font=("Arial", 20)) \
+        .grid(row=5, column=0, columnspan=3, sticky="w")
+
+    change_box = tk.Text(buttons_frame, height=3, width=30,
+                         font=("Courier New", 20), state="disabled")
+    change_box.grid(row=6, column=0, columnspan=3, sticky="w")
 
     root.mainloop()
