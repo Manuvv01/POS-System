@@ -2,7 +2,8 @@
 UI Using TKINTER
 """
 import tkinter as tk
-from src.ui.handlers import scanner_display
+import tkinter.messagebox
+from src.ui.handlers import scanner_display, open_payment_window
 from src.models.cart import Cart
 
 def do_nothing():
@@ -89,7 +90,7 @@ def run_app():
         text= "Pagar",
         font= ("Arial", 16),
         width= 15,
-        command= do_nothing
+        command= lambda: open_payment_window(root, total, change_box)
     )
 
     pay_button.grid(row=7, column=0, columnspan=3, pady=15)

@@ -6,9 +6,10 @@ Handlers are responsible for managing user interactions (such as key presses
 or button clicks) and connecting those actions to the application’s business logic.
 """
 import tkinter as tk
+import tkinter.messagebox
 from src.utils.mappers import get_product
 from src.services.cart_service import load_Cart
-
+from src.utils.calculations import process_payment
 
 
 def scan_item(barcode_entry, cart):
@@ -58,3 +59,24 @@ def scanner_display(event, text_box, barcode_entry, cart, total, total_price_box
     total_price_box.config(state="disabled")
 
     barcode_entry.delete(0, tk.END)
+
+def open_payment_window(root, total, change_box):
+    """
+
+    :param root:
+    :param total:
+    :param change_box:
+    :return:
+    """
+    popup = tk.Toplevel(root)
+    popup.title("Pago")
+    popup.geometry("300x200")
+
+    tk.Label(popup, text="Ingrese el dinero:", font=("Arial", 14)).pack(pady=10)
+
+    money_entry = tk.Entry(popup, font=("Arial", 14))
+    money_entry.pack(pady=10)
+
+    tk.Button(popup, text="Confirmar",
+              command= lambda: process_payment(total = total, change_box= change_box, popup= popup,
+                                               money_entry= money_entry)).pack(pady=10)
