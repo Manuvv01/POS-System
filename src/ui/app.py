@@ -11,6 +11,7 @@ def do_nothing():
 def run_app():
 
     cart = Cart() #Cart when scanning
+    total = {"value": 0.0} #Dictionary
 
     # Window creation
     root = tk.Tk()
@@ -26,8 +27,10 @@ def run_app():
     barcode_entry = tk.Entry(root, width= 40, font=("Arial", 20))
     barcode_entry.grid(row=1, column=1, sticky="w")
     root.grid_columnconfigure(1, weight=1)
-    barcode_entry.bind("<Return>",
-                       func= lambda event: scanner_display(event, text_box, barcode_entry, cart= cart))
+    #TODO: Clear button
+
+    # barcode_entry.bind("<Return>",
+    #                    func= lambda event: scanner_display(event, text_box,  barcode_entry, cart= cart))
 
     # Buttons
     buttons_frame = tk.Frame(root)
@@ -69,6 +72,17 @@ def run_app():
     change_box = tk.Text(buttons_frame, height=3, width=30,
                          font=("Courier New", 20), state="disabled")
     change_box.grid(row=6, column=0, columnspan=3, sticky="w")
+
+
+
+    #BARCODE ENTRY
+    barcode_entry.bind("<Return>",
+                       func= lambda event: scanner_display(event,
+                                                           text_box,
+                                                           barcode_entry,
+                                                           cart= cart,
+                                                           total= total,
+                                                           total_price_box= total_price_box))
 
     pay_button = tk.Button(
         buttons_frame,
