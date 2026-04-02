@@ -2,12 +2,15 @@
 UI Using TKINTER
 """
 import tkinter as tk
-from src.ui.handlers import add_to_textbox
+from src.ui.handlers import scanner_display
+from src.models.cart import Cart
 
 def do_nothing():
     pass
 
 def run_app():
+
+    cart = Cart() #Cart when scanning
 
     # Window creation
     root = tk.Tk()
@@ -24,7 +27,7 @@ def run_app():
     barcode_entry.grid(row=1, column=1, sticky="w")
     root.grid_columnconfigure(1, weight=1)
     barcode_entry.bind("<Return>",
-                       func= lambda event: add_to_textbox(event, text_box, barcode_entry))
+                       func= lambda event: scanner_display(event, text_box, barcode_entry, cart= cart))
 
     # Buttons
     buttons_frame = tk.Frame(root)

@@ -3,8 +3,8 @@ Haandles conversion between DataFrame rows and Product objects
 """
 import pandas
 from ..models.product import Product
-from src.models.cart import Cart
 from src.services.spreadsheet import read_rows
+from src.services.cart_service import load_Cart
 
 
 def df_to_Product(df, obj):
