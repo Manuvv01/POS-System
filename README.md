@@ -26,11 +26,12 @@ All libraries used in the project for development are listed in `requirements_de
 
 ## Features
 
-- Add products to inventory  
-- Store product data in spreadsheets  
-- Manage product information (name, price, quantity)  
-- Designed to support barcode scanning 
-
+- Product management (name, price, quantity, category)
+- Cart system for handling transactions
+- Input validation for reliable data entry
+- Excel integration for storing sales records
+- Modular architecture using Python packages (models, services)
+- Designed for future barcode scanner and GUI integration
 ---
 
 ## Workflow
@@ -62,4 +63,20 @@ The project uses GitHub issues to track tasks, organized with labels:
 - **Todo** – Tasks planned for future sprints  
 - **Completed** – Issues that have been finished  
 
+---
+
+## How to Run
+
+1. Clone the repository:
+   git clone https://github.com/Manuvv01/POS-System
+
+2. Navigate to the project folder:
+   cd POS-System/src
+
+3. Install dependencies:
+   pip install -r requirements.txt
+
+4. Run the program:
+   python main.py
+   
 You can explore the repository and issues to see the development process in detail.
