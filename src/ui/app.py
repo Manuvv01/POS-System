@@ -2,17 +2,8 @@
 UI Using TKINTER
 """
 import tkinter as tk
-from re import search
-
-from src.services.outputs import display_scannedItem
 from src.ui.handlers import add_to_textbox
 
-def display_total(event, box,):
-    box.insert(tk.END, total + "\n")
-
-
-
-    return 0
 def do_nothing():
     pass
 

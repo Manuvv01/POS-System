@@ -92,7 +92,7 @@ def test_df_to_Product():
     data = 7501000112233
     df = read_rows(column, data)
 
-    product_obj= df_to_Product(df,Product)
+    product_obj= df_to_Product(df, Product)
     print(type(product_obj))
 
 
