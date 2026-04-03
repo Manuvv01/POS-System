@@ -30,12 +30,13 @@ def run_app():
     # Textbox (items display)
     text_box = tk.Text(
         left_frame,
-        height=30,
-        width=85,
+        height=21, #30
+        width=57,#85
         state="disabled",
-        font=("Courier New", 20)
+        font=("Courier New", 30) #20
     )
     text_box.grid(row=0, column=0, columnspan=3, pady=10, sticky="w")
+    text_box.tag_configure("spaced", spacing3=10)
 
     # Barcode row (grouped tightly)
     barcode_frame = tk.Frame(left_frame)
@@ -55,13 +56,13 @@ def run_app():
     right_frame.grid(row=0, column=1, sticky="n", padx=10, pady=10)
 
     # Top buttons
-    tk.Button(right_frame, text="Agregar", width=15, command=do_nothing)\
+    tk.Button(right_frame, text="Agregar", font=("Arial", 13), width=15, command=do_nothing)\
         .grid(row=0, column=0, padx=5)
 
-    tk.Button(right_frame, text="Buscar", width=15, command=do_nothing)\
+    tk.Button(right_frame, text="Buscar",font=("Arial", 13), width=15, command=do_nothing)\
         .grid(row=0, column=1, padx=5)
 
-    tk.Button(right_frame, text="Borrar", width=15, command=do_nothing)\
+    tk.Button(right_frame, text="Borrar", font=("Arial", 13),width=15, command=do_nothing)\
         .grid(row=0, column=2, padx=5)
 
     # Total
@@ -70,11 +71,12 @@ def run_app():
 
     total_price_box = tk.Text(
         right_frame,
-        height=4,
-        width=30,
-        font=("Courier New", 20),
+        height=1,
+        width=12,
+        font=("Courier New", 50, "bold"),
         state="disabled"
     )
+    total_price_box.tag_configure("center", justify="center")  #Configures "center" to justify center
     total_price_box.grid(row=2, column=0, columnspan=3, sticky="w", pady=(0, 10))
 
     # Change
@@ -83,11 +85,13 @@ def run_app():
 
     change_box = tk.Text(
         right_frame,
-        height=3,
-        width=30,
-        font=("Courier New", 20),
+        height=1,
+        width=12,
+        font=("Courier New", 50, "bold"),
         state="disabled"
     )
+
+    change_box.tag_configure("center", justify="center") #Center the Text
     change_box.grid(row=4, column=0, columnspan=3, sticky="w", pady=(0, 10))
 
     # Pay button

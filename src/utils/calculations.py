@@ -26,9 +26,10 @@ def process_payment(total, change_box, popup, money_entry):
         change_box.config(state="normal")
         change_box.delete("1.0", tk.END)
         change_box.insert(tk.END, f"${change:.2f}")
+        change_box.tag_add("center", "1.0", "end")  # Center on every insert
         change_box.config(state="disabled")
 
-        popup.destroy()
+        popup.destroy()     #Exit Popup
 
     except ValueError:
         tk.Label(popup, text="Entrada inválida", fg="red").pack()

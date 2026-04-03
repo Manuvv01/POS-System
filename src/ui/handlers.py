@@ -46,7 +46,7 @@ def scanner_display(event, text_box, barcode_entry, cart, total, total_price_box
     item= scan_item(barcode_entry, cart) #Class Product
     item_str= f"{item.name:<{NAME_WIDTH}} ${item.price:>{PRICE_WIDTH}.2f}"
     text_box.config(state="normal")  #Box typing is enable
-    text_box.insert(tk.END, item_str + "\n")
+    text_box.insert(tk.END, item_str + "\n", "spaced")
     text_box.config(state="disabled")  #Box typing is disabled
     barcode_entry.delete(0, tk.END)  #Clear input
 
@@ -56,6 +56,7 @@ def scanner_display(event, text_box, barcode_entry, cart, total, total_price_box
     total_price_box.config(state="normal")
     total_price_box.delete("1.0", tk.END)
     total_price_box.insert(tk.END, f"${total['value']:.2f}")
+    total_price_box.tag_add("center", "1.0", "end") #Center on every insert
     total_price_box.config(state="disabled")
 
     barcode_entry.delete(0, tk.END)
