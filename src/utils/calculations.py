@@ -3,6 +3,9 @@ Does the calculations of the project
 """
 import tkinter as tk
 
+def calculate_total(total, item):
+    total["value"] += item.price
+
 def process_payment(total, change_box, popup, money_entry):
     """
     Processes the payment entered by the user in the popup window.

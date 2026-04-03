@@ -9,7 +9,7 @@ import tkinter as tk
 import tkinter.messagebox
 from src.utils.mappers import get_product
 from src.services.cart_service import load_Cart
-from src.utils.calculations import process_payment
+from src.utils.calculations import process_payment, calculate_total
 
 
 def scan_item(barcode_entry, cart):
@@ -51,7 +51,7 @@ def scanner_display(event, text_box, barcode_entry, cart, total, total_price_box
     barcode_entry.delete(0, tk.END)  #Clear input
 
     #TOTAL
-    total["value"] += item.price
+    calculate_total(total, item)
 
     total_price_box.config(state="normal")
     total_price_box.delete("1.0", tk.END)
@@ -71,6 +71,9 @@ def open_payment_window(root, total, change_box):
     :param: total (dict): A dictionary containing the current total price
     :param: change_box (tk.Text): The Text widget where the calculated change will be displayed.
     """
+    #Change function
+    cmd = lambda: process_payment(total = total, change_box= change_box, popup= popup,
+                                               money_entry= money_entry)
     popup = tk.Toplevel(root)
     popup.title("Pago")
     popup.geometry("300x200")
@@ -78,8 +81,8 @@ def open_payment_window(root, total, change_box):
     tk.Label(popup, text="Ingrese el dinero:", font=("Arial", 14)).pack(pady=10)
 
     money_entry = tk.Entry(popup, font=("Arial", 14))
+    money_entry.bind("<Return>", lambda event: cmd()) #Press Enter execute the function
     money_entry.pack(pady=10)
 
     tk.Button(popup, text="Confirmar",
-              command= lambda: process_payment(total = total, change_box= change_box, popup= popup,
-                                               money_entry= money_entry)).pack(pady=10)
+              command= cmd).pack(pady=10)

@@ -6,7 +6,7 @@ Handles item scanning, price calculation, total computation, and change calculat
 from src.services.spreadsheet import read_rows
 from src.utils.mappers import df_to_Product
 from src.models.product import Product
-from src.utils.calculations import calculates_change
+
 
 
 def check_system():
@@ -37,7 +37,7 @@ def check_system():
 
     money = float(input("Ingresa tu dinero: "))
 
-    change = calculates_change(total_price, money)
+    change = money - total_price
     print(f"Su cambio es de ${change}")
 
     print("Gracias por usar el sistema")
