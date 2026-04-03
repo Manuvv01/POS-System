@@ -6,6 +6,9 @@ import tkinter.messagebox
 from src.ui.handlers import scanner_display, open_payment_window
 from src.models.cart import Cart
 
+def clear(entry):
+    entry.delete(0, tk.END)
+
 
 def do_nothing():
     pass
@@ -44,7 +47,7 @@ def run_app():
     barcode_entry = tk.Entry(barcode_frame, width=20, font=("Arial", 20))
     barcode_entry.pack(side="left", padx=(0, 5))
 
-    tk.Button(barcode_frame, text="Clear", width=10, command=do_nothing) \
+    tk.Button(barcode_frame, text="Clear", width=10, command=lambda: clear(barcode_entry)) \
         .pack(side="left")
 
 
