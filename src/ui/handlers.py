@@ -62,11 +62,13 @@ def scanner_display(event, text_box, barcode_entry, cart, total, total_price_box
 
 def open_payment_window(root, total, change_box):
     """
+    Opens a popup window that prompts the user to enter the amount of money
+    provided for the transaction. Calculates the change based on the total
+    and updates the change display in the main UI.
 
-    :param root:
-    :param total:
-    :param change_box:
-    :return:
+    :param: root (tk.Tk): The main application window used as the parent for the popup.
+    :param: total (dict): A dictionary containing the current total price
+    :param: change_box (tk.Text): The Text widget where the calculated change will be displayed.
     """
     popup = tk.Toplevel(root)
     popup.title("Pago")

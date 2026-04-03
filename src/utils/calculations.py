@@ -5,13 +5,17 @@ import tkinter as tk
 
 def process_payment(total, change_box, popup, money_entry):
     """
+    Processes the payment entered by the user in the popup window.
+    Converts the input to a numeric value, calculates the change based
+    on the current total, updates the change display in the main UI,
+    and closes the popup window.
 
-    :param
-        total:
-         change_box:
-         popup:
-         money_entry:
+    If the input is invalid, an error message is displayed in the popup.
 
+    :param: total (dict): A dictionary containing the current total price.
+    :param: change_box (tk.Text): The Text widget where the calculated change will be displayed.
+    :param: popup (tk.Toplevel): The popup window used for entering the payment.
+    :param: money_entry (tk.Entry): The Entry widget where the user inputs the payment amount.
     """
 
     try:
