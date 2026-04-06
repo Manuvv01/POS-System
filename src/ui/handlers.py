@@ -6,7 +6,7 @@ Handlers are responsible for managing user interactions (such as key presses
 or button clicks) and connecting those actions to the application’s business logic.
 """
 import tkinter as tk
-import tkinter.messagebox
+from tkinter import filedialog
 from src.utils.mappers import get_product
 from src.services.cart_service import load_Cart
 from src.utils.calculations import  calculate_total,calculate_change
@@ -30,6 +30,7 @@ def scan_item(barcode_entry, cart):
     load_Cart(item, cart)
     return item
 
+
 def scanner_display(event, text_box, barcode_entry, cart, total, total_price_box):
     """
     Gets the barcode and displays the name and the price in the textbox
@@ -39,6 +40,7 @@ def scanner_display(event, text_box, barcode_entry, cart, total, total_price_box
         barcode_entry (tkinter): The entry for the barcode
 
     """
+
 
     ##ITEMS SCANNED SCREEN
     NAME_WIDTH= 43
@@ -59,6 +61,7 @@ def scanner_display(event, text_box, barcode_entry, cart, total, total_price_box
     total_price_box.config(state="disabled")
 
     barcode_entry.delete(0, tk.END)
+
 
 def open_payment_window(root, total, change_box):
     """
@@ -85,6 +88,7 @@ def open_payment_window(root, total, change_box):
 
     tk.Button(popup, text="Confirmar",
               command= cmd).pack(pady=10)
+
 
 def process_payment(total, change_box, popup, money_entry):
     """
@@ -116,6 +120,7 @@ def process_payment(total, change_box, popup, money_entry):
 
     except ValueError:
         tk.Label(popup, text="Entrada inválida", fg="red").pack()
+
 
 def clear(entry):
     entry.delete(0, tk.END)
