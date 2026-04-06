@@ -41,10 +41,9 @@ def scanner_display(event, text_box, barcode_entry, cart, total, total_price_box
     """
 
     ##ITEMS SCANNED SCREEN
-    NAME_WIDTH= 30
-    PRICE_WIDTH= 8
+    NAME_WIDTH= 43
     item= scan_item(barcode_entry, cart) #Class Product
-    item_str= f"{item.name:<{NAME_WIDTH}} ${item.price:>{PRICE_WIDTH}.2f}"
+    item_str= f"{item.name:<{NAME_WIDTH}} ${item.price:.2f}"
     text_box.config(state="normal")  #Box typing is enable
     text_box.insert(tk.END, item_str + "\n", "spaced")
     text_box.config(state="disabled")  #Box typing is disabled
