@@ -3,6 +3,9 @@ UI Using TKINTER
 """
 import tkinter as tk
 import tkinter.messagebox
+from tkinter import Menu
+from tkinter import font
+from time import strftime
 from src.ui.handlers import scanner_display, open_payment_window
 from src.models.cart import Cart
 
@@ -23,6 +26,20 @@ def run_app():
     root = tk.Tk()
     root.title("Punto de Venta")
     root.state("zoomed")
+
+    menu_font = font.Font(family="Arial", size=16)
+
+    # Creating Menubar
+    menubar = Menu(root)
+
+    # Adding File Menu and commands
+    file = Menu(menubar)
+    menubar.add_cascade(label='File', menu=file)
+    file.add_command(label='New File', command=do_nothing)
+    file.add_command(label='Open...', command=do_nothing)
+    file.add_separator()
+    file.add_command(label='Exit', command=root.destroy)
+
 
     left_frame = tk.Frame(root)
     left_frame.grid(row=0, column=0, sticky="nw", padx=10, pady=10)
@@ -116,4 +133,5 @@ def run_app():
         )
     )
 
+    root.config(menu= menubar)
     root.mainloop()
