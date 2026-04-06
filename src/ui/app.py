@@ -3,12 +3,8 @@ UI Using TKINTER
 """
 import tkinter as tk
 import tkinter.messagebox
-from src.ui.handlers import scanner_display, open_payment_window
+from src.ui.handlers import scanner_display, open_payment_window, clear
 from src.models.cart import Cart
-
-def clear(entry):
-    entry.delete(0, tk.END)
-
 
 def do_nothing():
     pass

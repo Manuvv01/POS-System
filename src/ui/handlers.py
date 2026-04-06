@@ -116,3 +116,6 @@ def process_payment(total, change_box, popup, money_entry):
 
     except ValueError:
         tk.Label(popup, text="Entrada inválida", fg="red").pack()
+
+def clear(entry):
+    entry.delete(0, tk.END)
