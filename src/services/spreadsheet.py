@@ -10,6 +10,8 @@ from src.utils.utilities import ensure_file_exists
 import pandas as pd
 import os
 
+col = ["Nombre","SKU", "Precio", "Cantidad", "Categoria"]
+
 #TODO: Delete this func and use ensure_file_exist in the other funcs
 def get_path():
 
@@ -29,7 +31,7 @@ def create_spreasdsheet():
 
     #dataframe creation
     if not os.path.exists(file_path):
-        df = pd.DataFrame(columns= ["Nombre","SKU", "Precio", "Cantidad", "Categoria"]) #Creates the columns
+        df = pd.DataFrame(columns= col) #Creates the columns
         df.to_excel(file_path, index= False)
         print("Archivo creado")
     else:
