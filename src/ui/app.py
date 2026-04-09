@@ -31,6 +31,15 @@ def run_app():
     tk.Button(toolbar, text="Abrir", font=("Arial", 13)) \
         .grid(row=0, column=1, padx=5, pady=5)
 
+    tk.Button(toolbar, text="Agregar", font=("Arial", 13)) \
+        .grid(row=0, column=2, padx=5, pady=5)
+
+    tk.Button(toolbar, text="Buscar", font=("Arial", 13)) \
+        .grid(row=0, column=3, padx=5, pady=5)
+
+    tk.Button(toolbar, text="Borrar", font=("Arial", 13)) \
+        .grid(row=0, column=4, padx=5, pady=5)
+
     # Grid Column and Row
     root.grid_columnconfigure(0, weight=1)  # left expands
     root.grid_columnconfigure(1, weight=0)  # right stays fixed
@@ -68,17 +77,7 @@ def run_app():
 
     # Right Frame
     right_frame = tk.Frame(root)
-    right_frame.grid(row=1, column=1, sticky="n", padx=10, pady=10)
-
-    # Top buttons
-    tk.Button(right_frame, text="Agregar", font=("Arial", 13), width=15, command=do_nothing)\
-        .grid(row=0, column=0, padx=5)
-
-    tk.Button(right_frame, text="Buscar",font=("Arial", 13), width=15, command=do_nothing)\
-        .grid(row=0, column=1, padx=5)
-
-    tk.Button(right_frame, text="Borrar", font=("Arial", 13),width=15, command=do_nothing)\
-        .grid(row=0, column=2, padx=5)
+    right_frame.grid(row=1, column=1, sticky="n", padx=(0, 45), pady=10)
 
     # Total Box
     tk.Label(right_frame, text="Total", font=("Arial", 20))\
