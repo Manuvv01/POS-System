@@ -14,6 +14,10 @@ from src.utils.calculations import  calculate_total,calculate_change
 label_font= ("Arial", 14)
 button_font= ("Arial", 11)
 
+
+def confirm_action():
+    print("There is communication")  # debugging
+
 def scan_item(barcode_entry, cart):
     """
     Gets the item from the barcode and converts it as a Product saves it in the Cart class
@@ -141,27 +145,32 @@ def add_row(root):
     .grid(row= 0, column= 0)
     sku_entry = Entry(popup, font=label_font)
     sku_entry.grid(row= 0, column=  1, pady= 8)
+    sku_entry.bind("<Return>", lambda event: name_entry.focus())
     #Nombre
     tk.Label(popup, text="Nombre:", font=label_font) \
     .grid(row= 1, column= 0)
     name_entry = Entry(popup, font=("Arial", 14))
     name_entry.grid(row= 1, column=  1, pady= 8)
+    name_entry.bind("<Return>", lambda event: price_entry.focus())
     #Precio
     tk.Label(popup, text="Precio:", font=label_font) \
     .grid(row= 2, column= 0)
     price_entry = Entry(popup, font=label_font)
     price_entry.grid(row= 2, column=  1, pady= 8)
+    price_entry.bind("<Return>", lambda event: quantity_entry.focus())
     #Cantidad
     tk.Label(popup, text="Cantidad:", font=label_font) \
     .grid(row= 3, column= 0)
     quantity_entry = Entry(popup, font=("Arial", 14))
     quantity_entry.grid(row= 3, column=  1, pady= 8)
+    quantity_entry.bind("<Return>", lambda event: cat_entry.focus())
     #Categoria
     tk.Label(popup, text="Categoria:", font=label_font) \
     .grid(row= 4, column= 0)
     cat_entry = Entry(popup, font=("Arial", 14))
     cat_entry.grid(row= 4, column=  1, pady= 10)
+    cat_entry.bind("<Return>", lambda event: confirm_action())
 
     # TODO: Create command for the button
-    tk.Button(popup, text= "Confirmar", font= button_font) \
+    tk.Button(popup, text= "Confirmar", font= button_font, command= confirm_action) \
     .grid(row= 5, column= 1)
