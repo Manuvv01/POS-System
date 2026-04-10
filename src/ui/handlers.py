@@ -132,7 +132,7 @@ def clear(entry):
 
 ## ADD PRODUCT
 
-def add_row(root):
+def add_product(root):
 
 
     popup = tk.Toplevel(root, padx= 100, pady= 80)
