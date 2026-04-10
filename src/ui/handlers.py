@@ -11,6 +11,8 @@ from src.utils.mappers import get_product
 from src.services.cart_service import load_Cart
 from src.utils.calculations import  calculate_total,calculate_change
 
+label_font= ("Arial", 14)
+button_font= ("Arial", 11)
 
 def scan_item(barcode_entry, cart):
     """
@@ -80,14 +82,13 @@ def open_payment_window(root, total, change_box):
     popup.title("Pago")
     popup.geometry("300x200")
 
-    tk.Label(popup, text="Ingrese el dinero:", font=("Arial", 14)).pack(pady=10)
+    tk.Label(popup, text="Ingrese el dinero:", font= label_font).pack(pady=10)
 
-    money_entry = tk.Entry(popup, font=("Arial", 14))
+    money_entry = tk.Entry(popup, font= label_font)
     money_entry.bind("<Return>", lambda event: cmd()) #Press Enter execute the function
     money_entry.pack(pady=10)
 
-    tk.Button(popup, text="Confirmar",
-              command= cmd).pack(pady=10)
+    tk.Button(popup, text="Confirmar", font= button_font, command= cmd).pack(pady=10)
 
 
 def process_payment(total, change_box, popup, money_entry):
@@ -136,31 +137,31 @@ def add_row(root):
 
     #TODO: Input Validation
     #SKU
-    tk.Label(popup, text="SKU:", font=("Arial", 14)) \
+    tk.Label(popup, text="SKU:", font=label_font) \
     .grid(row= 0, column= 0)
-    sku_entry = Entry(popup, font=("Arial", 14))
+    sku_entry = Entry(popup, font=label_font)
     sku_entry.grid(row= 0, column=  1, pady= 8)
     #Nombre
-    tk.Label(popup, text="Nombre:", font=("Arial", 14)) \
+    tk.Label(popup, text="Nombre:", font=label_font) \
     .grid(row= 1, column= 0)
     name_entry = Entry(popup, font=("Arial", 14))
     name_entry.grid(row= 1, column=  1, pady= 8)
     #Precio
-    tk.Label(popup, text="Precio:", font=("Arial", 14)) \
+    tk.Label(popup, text="Precio:", font=label_font) \
     .grid(row= 2, column= 0)
-    price_entry = Entry(popup, font=("Arial", 14))
+    price_entry = Entry(popup, font=label_font)
     price_entry.grid(row= 2, column=  1, pady= 8)
     #Cantidad
-    tk.Label(popup, text="Cantidad:", font=("Arial", 14)) \
+    tk.Label(popup, text="Cantidad:", font=label_font) \
     .grid(row= 3, column= 0)
     price_entry = Entry(popup, font=("Arial", 14))
     price_entry.grid(row= 3, column=  1, pady= 8)
     #Categoria
-    tk.Label(popup, text="Categoria:", font=("Arial", 14)) \
+    tk.Label(popup, text="Categoria:", font=label_font) \
     .grid(row= 4, column= 0)
     cat_entry = Entry(popup, font=("Arial", 14))
     cat_entry.grid(row= 4, column=  1, pady= 10)
 
     # TODO: Create command for the button
-    tk.Button(popup, text= "Confirmar", font= ("Arial", 12)) \
+    tk.Button(popup, text= "Confirmar", font= button_font) \
     .grid(row= 5, column= 1)
