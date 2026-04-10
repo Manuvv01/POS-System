@@ -154,8 +154,8 @@ def add_row(root):
     #Cantidad
     tk.Label(popup, text="Cantidad:", font=label_font) \
     .grid(row= 3, column= 0)
-    price_entry = Entry(popup, font=("Arial", 14))
-    price_entry.grid(row= 3, column=  1, pady= 8)
+    quantity_entry = Entry(popup, font=("Arial", 14))
+    quantity_entry.grid(row= 3, column=  1, pady= 8)
     #Categoria
     tk.Label(popup, text="Categoria:", font=label_font) \
     .grid(row= 4, column= 0)
