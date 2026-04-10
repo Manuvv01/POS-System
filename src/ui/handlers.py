@@ -6,7 +6,7 @@ Handlers are responsible for managing user interactions (such as key presses
 or button clicks) and connecting those actions to the application’s business logic.
 """
 import tkinter as tk
-from tkinter import filedialog
+from tkinter import filedialog, Entry
 from src.utils.mappers import get_product
 from src.services.cart_service import load_Cart
 from src.utils.calculations import  calculate_total,calculate_change
@@ -124,3 +124,43 @@ def process_payment(total, change_box, popup, money_entry):
 
 def clear(entry):
     entry.delete(0, tk.END)
+
+## ADD PRODUCT
+
+def add_row(root):
+
+
+    popup = tk.Toplevel(root, padx= 100, pady= 80)
+    popup.title("Agregar Producto")
+    popup.geometry("600x400")
+
+    #TODO: Input Validation
+    #SKU
+    tk.Label(popup, text="SKU:", font=("Arial", 14)) \
+    .grid(row= 0, column= 0)
+    sku_entry = Entry(popup, font=("Arial", 14))
+    sku_entry.grid(row= 0, column=  1, pady= 8)
+    #Nombre
+    tk.Label(popup, text="Nombre:", font=("Arial", 14)) \
+    .grid(row= 1, column= 0)
+    name_entry = Entry(popup, font=("Arial", 14))
+    name_entry.grid(row= 1, column=  1, pady= 8)
+    #Precio
+    tk.Label(popup, text="Precio:", font=("Arial", 14)) \
+    .grid(row= 2, column= 0)
+    price_entry = Entry(popup, font=("Arial", 14))
+    price_entry.grid(row= 2, column=  1, pady= 8)
+    #Cantidad
+    tk.Label(popup, text="Cantidad:", font=("Arial", 14)) \
+    .grid(row= 3, column= 0)
+    price_entry = Entry(popup, font=("Arial", 14))
+    price_entry.grid(row= 3, column=  1, pady= 8)
+    #Categoria
+    tk.Label(popup, text="Categoria:", font=("Arial", 14)) \
+    .grid(row= 4, column= 0)
+    cat_entry = Entry(popup, font=("Arial", 14))
+    cat_entry.grid(row= 4, column=  1, pady= 10)
+
+    # TODO: Create command for the button
+    tk.Button(popup, text= "Confirmar", font= ("Arial", 12)) \
+    .grid(row= 5, column= 1)

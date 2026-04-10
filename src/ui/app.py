@@ -3,7 +3,7 @@ UI Using TKINTER
 """
 import tkinter as tk
 import tkinter.messagebox
-from src.ui.handlers import scanner_display, open_payment_window, clear
+from src.ui.handlers import scanner_display, open_payment_window, clear, add_row
 from src.utils.file_handlers import save_file_dialog, open_file_dialog
 from src.models.cart import Cart
 
@@ -32,7 +32,7 @@ def run_app():
     tk.Button(toolbar, text="Abrir", font=("Arial", 13), command= lambda: open_file_dialog(file_path)) \
         .grid(row=0, column=1, padx=5, pady=5)
 
-    tk.Button(toolbar, text="Agregar", font=("Arial", 13)) \
+    tk.Button(toolbar, text="Agregar", font=("Arial", 13), command= lambda:add_row(root)) \
         .grid(row=0, column=2, padx=5, pady=5)
 
     tk.Button(toolbar, text="Buscar", font=("Arial", 13)) \

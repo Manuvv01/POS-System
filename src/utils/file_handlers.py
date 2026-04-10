@@ -36,4 +36,3 @@ def open_file_dialog(f_path):
     if f_path:
         f_path["value"] = file_path
         os.startfile(file_path) #opens the file in the system
-
