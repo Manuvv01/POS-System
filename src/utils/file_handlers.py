@@ -4,6 +4,7 @@ Contains file handlers for Tkinters
 from tkinter import filedialog
 from tkinter import messagebox
 import pandas as pd
+import os
 
 path = {"value": " "}
 
@@ -27,4 +28,12 @@ def save_file_dialog():
         messagebox.showinfo(title= "Archivo creado", message= create_message) #Prints message
 
 
-print(path)
+def open_file_dialog(f_path):
+    file_path = filedialog.askopenfilename(
+        filetypes=[("Excel Files", "*.xlsx")]
+    )
+
+    if f_path:
+        f_path["value"] = file_path
+        os.startfile(file_path) #opens the file in the system
+

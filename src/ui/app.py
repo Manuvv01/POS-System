@@ -4,7 +4,7 @@ UI Using TKINTER
 import tkinter as tk
 import tkinter.messagebox
 from src.ui.handlers import scanner_display, open_payment_window, clear
-from src.utils.file_handlers import save_file_dialog
+from src.utils.file_handlers import save_file_dialog, open_file_dialog
 from src.models.cart import Cart
 
 def do_nothing():
@@ -15,6 +15,7 @@ def run_app():
 
     cart = Cart()
     total = {"value": 0.0}
+    file_path = {"value": None}
 
     # Window creation
     root = tk.Tk()
@@ -28,7 +29,7 @@ def run_app():
     tk.Button(toolbar, text="Crear", font=("Arial", 13), command= save_file_dialog) \
         .grid(row=0, column=0, padx=5, pady=5)
 
-    tk.Button(toolbar, text="Abrir", font=("Arial", 13)) \
+    tk.Button(toolbar, text="Abrir", font=("Arial", 13), command= lambda: open_file_dialog(file_path)) \
         .grid(row=0, column=1, padx=5, pady=5)
 
     tk.Button(toolbar, text="Agregar", font=("Arial", 13)) \
