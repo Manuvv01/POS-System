@@ -7,12 +7,19 @@ or button clicks) and connecting those actions to the application’s business l
 """
 import tkinter as tk
 from tkinter import filedialog, Entry
+from tkinter import messagebox
 from src.utils.mappers import get_product
 from src.services.cart_service import load_Cart
 from src.utils.calculations import  calculate_total,calculate_change
 
 label_font= ("Arial", 14)
 button_font= ("Arial", 11)
+
+def entries_actions(event, entry1, entry2, dic, key):
+    dic[key] = entry1.get().strip()
+    print(f"Saved {key}:", dic[key])
+
+    entry2.focus()
 
 
 def confirm_action():
@@ -134,10 +141,20 @@ def clear(entry):
 
 def add_product(root):
 
+    item ={'SKU': "",
+           'Name': "",
+           'Price': "",
+           'Quantity': "",
+           'Category':""}
+
 
     popup = tk.Toplevel(root, padx= 100, pady= 80)
     popup.title("Agregar Producto")
     popup.geometry("600x400")
+
+    popup.transient(root)  # attach to main window
+    popup.grab_set()    # modal behavior (locks focus)
+    popup.focus_force() # bring to front
 
     #TODO: Input Validation
     #SKU
@@ -145,32 +162,61 @@ def add_product(root):
     .grid(row= 0, column= 0)
     sku_entry = Entry(popup, font=label_font)
     sku_entry.grid(row= 0, column=  1, pady= 8)
-    sku_entry.bind("<Return>", lambda event: name_entry.focus())
+    sku_entry.bind("<Return>", lambda event: entries_actions(event, entry1= sku_entry, entry2= name_entry,
+                                                             dic= item, key='SKU'))
     #Nombre
     tk.Label(popup, text="Nombre:", font=label_font) \
     .grid(row= 1, column= 0)
     name_entry = Entry(popup, font=("Arial", 14))
     name_entry.grid(row= 1, column=  1, pady= 8)
-    name_entry.bind("<Return>", lambda event: price_entry.focus())
+    name_entry.bind("<Return>", lambda event: entries_actions(event, entry1= name_entry, entry2= price_entry,
+                                                             dic= item, key='Name'))
     #Precio
     tk.Label(popup, text="Precio:", font=label_font) \
     .grid(row= 2, column= 0)
     price_entry = Entry(popup, font=label_font)
     price_entry.grid(row= 2, column=  1, pady= 8)
-    price_entry.bind("<Return>", lambda event: quantity_entry.focus())
+    price_entry.bind("<Return>", lambda event: entries_actions(event, entry1= price_entry, entry2= quantity_entry,
+                                                             dic= item, key='Price'))
     #Cantidad
     tk.Label(popup, text="Cantidad:", font=label_font) \
     .grid(row= 3, column= 0)
     quantity_entry = Entry(popup, font=("Arial", 14))
     quantity_entry.grid(row= 3, column=  1, pady= 8)
-    quantity_entry.bind("<Return>", lambda event: cat_entry.focus())
+    quantity_entry.bind("<Return>", lambda event: entries_actions(event, entry1= quantity_entry, entry2= cat_entry,
+                                                             dic= item, key='Quantity'))
     #Categoria
     tk.Label(popup, text="Categoria:", font=label_font) \
     .grid(row= 4, column= 0)
     cat_entry = Entry(popup, font=("Arial", 14))
     cat_entry.grid(row= 4, column=  1, pady= 10)
-    cat_entry.bind("<Return>", lambda event: confirm_action())
+    cat_entry.bind("<Return>", lambda event: confirmation_window(item,cat_entry, popup))
 
     # TODO: Create command for the button
-    tk.Button(popup, text= "Confirmar", font= button_font, command= confirm_action) \
+    tk.Button(popup, text= "Confirmar", font= button_font, command= lambda : confirmation_window(item, cat_entry,
+                                                                                                 popup)) \
     .grid(row= 5, column= 1)
+
+def confirmation_window(dic, entry, popup):
+
+    dic["Category"] = entry.get().strip()
+    print(f"Saved Category:", dic["Category"])
+
+    product_message= (f"SKU: {dic['SKU']}\n"
+              f"Name: {dic['Name']}\n"
+              f"Price: {dic['Price']}\n"
+              f"Quantity: {dic['Quantity']}\n"
+              f"Category: {dic['Category']}")
+
+    result =messagebox.askyesno(
+        "Confirmación",
+        product_message,
+        parent=popup
+    )
+
+    if result:
+        print("Product confirmed ")
+        # save to Excel or database here
+    else:
+        print("Go back")
+
