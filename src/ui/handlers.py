@@ -14,7 +14,7 @@ from src.utils.calculations import  calculate_total,calculate_change
 from src.models.product import Product
 from src.services.spreadsheet import add_row
 
-label_font= ("Arial", 14)
+labelentryfont= ("Arial", 14)
 button_font= ("Arial", 11)
 
 def entries_actions(event, entry1, entry2, dic, key):
@@ -104,9 +104,9 @@ def open_payment_window(root, total, change_box):
     popup.title("Pago")
     popup.geometry("300x200")
 
-    tk.Label(popup, text="Ingrese el dinero:", font= label_font).pack(pady=10)
+    tk.Label(popup, text="Ingrese el dinero:", font= labelentryfont).pack(pady=10)
 
-    money_entry = tk.Entry(popup, font= label_font)
+    money_entry = tk.Entry(popup, font= labelentryfont)
     money_entry.bind("<Return>", lambda event: cmd()) #Press Enter execute the function
     money_entry.pack(pady=10)
 
@@ -178,39 +178,36 @@ def add_product(root):
 
     #TODO: Input Validation
     #SKU
-    tk.Label(popup, text="SKU:", font=label_font) \
-    .grid(row= 0, column= 0)
-    sku_entry = Entry(popup, font=label_font)
+    tk.Label(popup, text="SKU:", font=labelentryfont).grid(row= 0, column= 0)
+    sku_entry = Entry(popup, font=labelentryfont)
     sku_entry.grid(row= 0, column=  1, pady= 8)
     sku_entry.bind("<Return>", lambda event: entries_actions(event, entry1= sku_entry, entry2= name_entry,
                                                              dic= item, key='SKU'))
     #Nombre
-    tk.Label(popup, text="Nombre:", font=label_font) \
-    .grid(row= 1, column= 0)
-    name_entry = Entry(popup, font=("Arial", 14))
+    tk.Label(popup, text="Nombre:", font=labelentryfont).grid(row= 1, column= 0)
+    name_entry = Entry(popup, font= labelentryfont)
     name_entry.grid(row= 1, column=  1, pady= 8)
     name_entry.bind("<Return>", lambda event: entries_actions(event, entry1= name_entry, entry2= price_entry,
                                                              dic= item, key='Name'))
     #Precio
-    tk.Label(popup, text="Precio:", font=label_font) \
-    .grid(row= 2, column= 0)
-    price_entry = Entry(popup, font=label_font)
+    tk.Label(popup, text="Precio:", font=labelentryfont).grid(row= 2, column= 0)
+    price_entry = Entry(popup, font=labelentryfont)
     price_entry.grid(row= 2, column=  1, pady= 8)
     price_entry.bind("<Return>", lambda event: entries_actions(event, entry1= price_entry, entry2= quantity_entry,
                                                              dic= item, key='Price'))
     #Cantidad
-    tk.Label(popup, text="Cantidad:", font=label_font) \
-    .grid(row= 3, column= 0)
-    quantity_entry = Entry(popup, font=("Arial", 14))
+    tk.Label(popup, text="Cantidad:", font=labelentryfont).grid(row= 3, column= 0)
+    quantity_entry = Entry(popup, font= labelentryfont)
     quantity_entry.grid(row= 3, column=  1, pady= 8)
     quantity_entry.bind("<Return>", lambda event: entries_actions(event, entry1= quantity_entry, entry2= cat_entry,
                                                              dic= item, key='Quantity'))
     #Categoria
-    tk.Label(popup, text="Categoria:", font=label_font) \
-    .grid(row= 4, column= 0)
-    cat_entry = Entry(popup, font=("Arial", 14))
+    tk.Label(popup, text="Categoria:", font=labelentryfont).grid(row= 4, column= 0)
+    cat_entry = Entry(popup, font=labelentryfont)
     cat_entry.grid(row= 4, column=  1, pady= 10)
-    cat_entry.bind("<Return>", lambda event: confirmation_window(item,cat_entry, popup))
+    cat_entry.bind("<Return>", lambda event: confirmation_window(dic= item, sku_entry= sku_entry, name_entry= name_entry,
+                                                    price_entry= price_entry, quantity_entry= quantity_entry,
+                                                    cat_entry= cat_entry, popup= popup))
 
     # TODO: Create command for the button
     tk.Button(popup, text= "Confirmar", font= button_font,
@@ -236,10 +233,13 @@ def confirmation_window(dic, sku_entry, name_entry, price_entry, quantity_entry,
         None
     """
 
-    dic['SKU'] = sku_entry.get().strip()
-    dic['Name'] = name_entry.get().strip()
-    dic['Price'] = price_entry.get().strip()
-    dic['Quantity'] = quantity_entry.get().strip()
+    # The user clicks confirm button it will create the dictionary
+    if dic['SKU'] == "" and dic['Name'] == "" and dic['Price'] == "" and dic['Quantity'] == "":
+        dic['SKU'] = sku_entry.get().strip()
+        dic['Name'] = name_entry.get().strip()
+        dic['Price'] = price_entry.get().strip()
+        dic['Quantity'] = quantity_entry.get().strip()
+
     dic['Category'] = cat_entry.get().strip()
 
     product_message= (f"SKU: {dic['SKU']}\n"
