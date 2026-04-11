@@ -6,11 +6,13 @@ Handlers are responsible for managing user interactions (such as key presses
 or button clicks) and connecting those actions to the application’s business logic.
 """
 import tkinter as tk
-from tkinter import filedialog, Entry
+from tkinter import Entry
 from tkinter import messagebox
 from src.utils.mappers import get_product
 from src.services.cart_service import load_Cart
 from src.utils.calculations import  calculate_total,calculate_change
+from src.models.product import Product
+from src.services.spreadsheet import add_row
 
 label_font= ("Arial", 14)
 button_font= ("Arial", 11)
@@ -248,7 +250,16 @@ def confirmation_window(dic, entry, popup):
 
     if result:
         print("Product confirmed ")
-        # save to Excel or database here
+        #Creates the object
+        product= Product(name= dic['Name'],
+                         barcode= dic['SKU'],
+                         price= dic['Price'],
+                         quantity= dic['Quantity'],
+                         category= dic['Category'])
+
+        add_row(product) #Store it in the spreadsheet
+
     else:
         print("Go back")
+        popup.focus_force()
 
