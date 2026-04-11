@@ -267,5 +267,4 @@ def confirmation_window(dic, sku_entry, name_entry, price_entry, quantity_entry,
 
     else:
         print("Go back")
-        popup.focus_force()
-
+        popup.focus_force() #Makes the entries window to not minimize

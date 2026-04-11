@@ -2,7 +2,6 @@
 UI Using TKINTER
 """
 import tkinter as tk
-import tkinter.messagebox
 from src.ui.handlers import scanner_display, open_payment_window, clear, add_product
 from src.utils.file_handlers import save_file_dialog, open_file_dialog
 from src.models.cart import Cart
