@@ -16,14 +16,25 @@ label_font= ("Arial", 14)
 button_font= ("Arial", 11)
 
 def entries_actions(event, entry1, entry2, dic, key):
+    """
+    Assigns the value from an entry widget to a dictionary key
+    and moves focus to the next entry field.
+
+    Args:
+        event: The Tkinter event that triggers the function.
+        entry1: The current entry widget.
+        entry2: The next entry widget to receive focus.
+        dic (dict): Dictionary where the value will be stored.
+        key (str): Key in the dictionary to assign the value to.
+
+    Returns:
+        None
+    """
     dic[key] = entry1.get().strip()
     print(f"Saved {key}:", dic[key])
 
     entry2.focus()
 
-
-def confirm_action():
-    print("There is communication")  # debugging
 
 def scan_item(barcode_entry, cart):
     """
@@ -140,6 +151,15 @@ def clear(entry):
 ## ADD PRODUCT
 
 def add_product(root):
+    """
+    Opens a Tkinter window that allows the user to input product details.
+
+    Args:
+        root: The parent Tkinter window.
+
+    Returns:
+        None
+    """
 
     item ={'SKU': "",
            'Name': "",
@@ -198,6 +218,18 @@ def add_product(root):
     .grid(row= 5, column= 1)
 
 def confirmation_window(dic, entry, popup):
+    """
+    Displays a confirmation window showing product information
+    before adding it to the spreadsheet.
+
+    Args:
+        dic (dict): Dictionary containing the product data.
+        entry: Tkinter entry widgets used for user input.
+        popup: Tkinter window instance for the confirmation dialog.
+
+    Returns:
+        None
+    """
 
     dic["Category"] = entry.get().strip()
     print(f"Saved Category:", dic["Category"])
