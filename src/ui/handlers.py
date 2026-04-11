@@ -33,8 +33,6 @@ def entries_actions(event, entry1, entry2, dic, key):
         None
     """
     dic[key] = entry1.get().strip()
-    print(f"Saved {key}:", dic[key])
-
     entry2.focus()
 
 
@@ -215,26 +213,34 @@ def add_product(root):
     cat_entry.bind("<Return>", lambda event: confirmation_window(item,cat_entry, popup))
 
     # TODO: Create command for the button
-    tk.Button(popup, text= "Confirmar", font= button_font, command= lambda : confirmation_window(item, cat_entry,
-                                                                                                 popup)) \
+    tk.Button(popup, text= "Confirmar", font= button_font,
+              command= lambda : confirmation_window(dic= item, sku_entry= sku_entry, name_entry= name_entry,
+                                                    price_entry= price_entry, quantity_entry= quantity_entry,
+                                                    cat_entry= cat_entry, popup= popup)) \
     .grid(row= 5, column= 1)
 
-def confirmation_window(dic, entry, popup):
+def confirmation_window(dic, sku_entry, name_entry, price_entry, quantity_entry, cat_entry, popup):
     """
-    Displays a confirmation window showing product information
-    before adding it to the spreadsheet.
+    Displays a confirmation dialog with product details before saving it to the spreadsheet.
 
     Args:
-        dic (dict): Dictionary containing the product data.
-        entry: Tkinter entry widgets used for user input.
-        popup: Tkinter window instance for the confirmation dialog.
+        dic (dict): Product data to be confirmed.
+        sku_entry: Entry widget for the product SKU.
+        name_entry: Entry widget for the product name.
+        price_entry: Entry widget for the product price.
+        quantity_entry: Entry widget for the product quantity.
+        cat_entry: Entry widget for the product category.
+        popup: Tkinter window instance for the dialog.
 
     Returns:
         None
     """
 
-    dic["Category"] = entry.get().strip()
-    print(f"Saved Category:", dic["Category"])
+    dic['SKU'] = sku_entry.get().strip()
+    dic['Name'] = name_entry.get().strip()
+    dic['Price'] = price_entry.get().strip()
+    dic['Quantity'] = quantity_entry.get().strip()
+    dic['Category'] = cat_entry.get().strip()
 
     product_message= (f"SKU: {dic['SKU']}\n"
               f"Name: {dic['Name']}\n"
