@@ -2,7 +2,7 @@
 UI Using TKINTER
 """
 import tkinter as tk
-from src.ui.handlers import scanner_display, open_payment_window, clear, add_product
+from src.ui.handlers import scanner_display, open_payment_window, clear, add_product, search_product
 from src.utils.file_handlers import save_file_dialog, open_file_dialog
 from src.models.cart import Cart
 
@@ -40,7 +40,7 @@ def run_app():
     tk.Button(toolbar, text="Agregar", font=button_font, command= lambda:add_product(root)) \
         .grid(row=0, column=2, padx=5, pady=5)
 
-    tk.Button(toolbar, text="Buscar", font= button_font) \
+    tk.Button(toolbar, text="Buscar", font= button_font, command=  lambda: search_product(root) ) \
         .grid(row=0, column=3, padx=5, pady=5)
 
     tk.Button(toolbar, text="Borrar", font=button_font) \

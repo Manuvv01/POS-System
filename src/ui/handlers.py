@@ -13,6 +13,7 @@ from src.services.cart_service import load_Cart
 from src.utils.calculations import  calculate_total,calculate_change
 from src.models.product import Product
 from src.services.spreadsheet import add_row
+from src.utils.utilities import center_window
 
 labelentryfont= ("Arial", 14)
 button_font= ("Arial", 11)
@@ -176,6 +177,8 @@ def add_product(root):
     popup.grab_set()    # modal behavior (locks focus)
     popup.focus_force() # bring to front
 
+    center_window(parent= root, window= popup)
+
     #TODO: Input Validation
     #SKU
     tk.Label(popup, text="SKU:", font=labelentryfont).grid(row= 0, column= 0)
@@ -277,8 +280,12 @@ def confirmation_window(dic, sku_entry, name_entry, price_entry, quantity_entry,
 def search_product(root):
     popup = tk.Toplevel(root, padx= 100, pady= 80)
     popup.title("Buscar Producto")
-    popup.geometry("600x400")
+    width = 600
+    height = 400
+    popup.geometry(f"{width}x{height}")
 
     popup.transient(root)  # attach to main window
     popup.grab_set()    # modal behavior (locks focus)
     popup.focus_force() # bring to front
+
+    center_window(parent= root, window= popup)
