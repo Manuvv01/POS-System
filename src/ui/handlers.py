@@ -17,6 +17,10 @@ from src.utils.utilities import center_window
 
 labelentryfont= ("Arial", 14)
 button_font= ("Arial", 11)
+searchbox_font= ("Courier New", 14)
+radiobutton_font= ("Arial", 16)
+
+
 
 def entries_actions(event, entry1, entry2, dic, key):
     """
@@ -280,8 +284,8 @@ def confirmation_window(dic, sku_entry, name_entry, price_entry, quantity_entry,
 def search_product(root):
     popup = tk.Toplevel(root, padx= 100, pady= 80)
     popup.title("Buscar Producto")
-    width = 600
-    height = 400
+    width = 1600
+    height = 800
     popup.geometry(f"{width}x{height}")
 
     popup.transient(root)  # attach to main window
@@ -289,3 +293,65 @@ def search_product(root):
     popup.focus_force() # bring to front
 
     center_window(parent= root, window= popup)
+
+    # ===== TOP FRAME (search controls) =====
+    top_frame = tk.Frame(popup)
+    top_frame.grid(row=0, column=0, sticky="ew", padx=10, pady=10)
+
+    popup.grid_columnconfigure(0, weight=1)
+
+    # Entry
+    search_entry = tk.Entry(top_frame, font= labelentryfont, width=40)
+    search_entry.grid(row=0, column=0, padx=5, sticky="w")
+    search_entry.focus_set()
+
+    # Search button
+    search_button = tk.Button(top_frame, text="Buscar", font= button_font, width=15)
+    search_button.grid(row=0, column=1, padx=5)
+
+    # Radio buttons
+    filter_options = tk.StringVar(value="todos")
+
+    tk.Radiobutton(top_frame, text="Todos", variable=filter_options, value="todos", font= radiobutton_font,
+                    command= lambda: choose(filter_options)) \
+    .grid(row=0, column=2, padx=5)
+
+
+    tk.Radiobutton(top_frame, text="SKU", variable=filter_options, value="sku", font= radiobutton_font,
+                    command= lambda: choose(filter_options)) \
+        .grid(row=0, column=3, padx=5)
+
+    tk.Radiobutton(top_frame, text="Nombre", variable=filter_options, value="nombre", font= radiobutton_font,
+                    command= lambda: choose(filter_options)) \
+        .grid(row=0, column=4, padx=5)
+
+    tk.Radiobutton(top_frame, text="Categoria", variable=filter_options, value="categoria", font= radiobutton_font,
+                    command= lambda: choose(filter_options)) \
+        .grid(row=0, column=5, padx=5)
+
+
+    # ===== BOTTOM FRAME (results textbox) =====
+    bottom_frame = tk.Frame(popup)
+    bottom_frame.grid(row=1, column=0, sticky="nsew", padx=10, pady=10)
+
+    popup.grid_rowconfigure(1, weight=1)  # makes textbox expand
+
+    results_box = tk.Text(
+        bottom_frame,
+        font=searchbox_font,
+        state="normal",
+        padx= 10,
+        pady= 10
+    )
+    results_box.pack(fill="both", expand=True)
+
+def choose(filter_options):
+    option = filter_options.get()
+    if option == "todos":
+        print("Is todos")
+    elif option == "sku":
+        print("Is sku")
+    elif option == "nombre":
+        print("Is nombre")
+    elif option == "categoria":
+        print("Is categoria")
