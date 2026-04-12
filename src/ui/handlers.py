@@ -148,7 +148,7 @@ def process_payment(total, change_box, popup, money_entry):
 def clear(entry):
     entry.delete(0, tk.END)
 
-## ADD PRODUCT
+## AGREGAR BUTTON COMMANDS
 
 def add_product(root):
     """
@@ -270,3 +270,15 @@ def confirmation_window(dic, sku_entry, name_entry, price_entry, quantity_entry,
     else:
         print("Go back")
         popup.focus_force() #Makes the entries window to not minimize
+
+
+#BUSCAR BUTTON COMMANDS
+
+def search_product(root):
+    popup = tk.Toplevel(root, padx= 100, pady= 80)
+    popup.title("Buscar Producto")
+    popup.geometry("600x400")
+
+    popup.transient(root)  # attach to main window
+    popup.grab_set()    # modal behavior (locks focus)
+    popup.focus_force() # bring to front

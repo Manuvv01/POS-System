@@ -19,7 +19,7 @@ def run_app():
 
     cart = Cart()
     total = {"value": 0.0}
-    file_path = {"value": None}
+    file_path = {"value": ""}
 
     # Window creation
     root = tk.Tk()
