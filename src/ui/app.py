@@ -2,10 +2,10 @@
 UI Using TKINTER
 """
 import tkinter as tk
-from src.ui.handlers import scanner_display, open_payment_window, clear, add_product, search_product
+from src.ui.handlers import add_product, search_product
 from src.utils.file_handlers import save_file_dialog, open_file_dialog
 from src.models.cart import Cart
-
+from src.ui.sales_handlers import scanner_display, open_payment_window, clear
 scanner_font= ("Courier New", 30)
 button_font= font=("Arial", 13)
 med_font= ("Arial", 20)
