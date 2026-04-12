@@ -27,7 +27,7 @@ def save_file_dialog():
         messagebox.showinfo(title= "Archivo creado", message= create_message) #Prints message
 
 
-def open_file_dialog(f_path):
+def open_file_dialog(f_path: dict):
     """
     Opens an Excel file from the specified file path.
 
@@ -43,5 +43,5 @@ def open_file_dialog(f_path):
     )
 
     if f_path:
-        path["value"] = file_path
+        f_path["value"] = file_path
         os.startfile(file_path) #opens the file in the system
