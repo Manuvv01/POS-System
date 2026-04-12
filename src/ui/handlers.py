@@ -264,6 +264,8 @@ def confirmation_window(dic, sku_entry, name_entry, price_entry, quantity_entry,
                          category= dic['Category'])
 
         add_row(product) #Store it in the spreadsheet
+        create_message= "El producto ha sido guardado"
+        messagebox.showinfo(title="Producto Guardado", message=create_message)
 
     else:
         print("Go back")
