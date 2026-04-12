@@ -36,7 +36,7 @@ def entries_actions(event, entry1, entry2, dic, key):
     entry2.focus()
 
 
-## AGREGAR BUTTON COMMANDS
+# =======AGREGAR BUTTON COMMANDS========
 
 def add_product(root):
     """
@@ -58,7 +58,9 @@ def add_product(root):
 
     popup = tk.Toplevel(root, padx= 100, pady= 80)
     popup.title("Agregar Producto")
-    popup.geometry("600x400")
+    width= 600
+    height= 400
+    popup.geometry(f"{width}x{height}")
 
     popup.transient(root)  # attach to main window
     popup.grab_set()    # modal behavior (locks focus)
@@ -162,7 +164,7 @@ def confirmation_window(dic, sku_entry, name_entry, price_entry, quantity_entry,
         popup.focus_force() #Makes the entries window to not minimize
 
 
-#BUSCAR BUTTON COMMANDS
+#======BUSCAR BUTTON COMMANDS=========
 
 def search_product(root):
     popup = tk.Toplevel(root, padx= 100, pady= 80)
