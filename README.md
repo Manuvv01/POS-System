@@ -6,6 +6,22 @@ This project is a full-stack desktop application using Python for the backend, w
 
 ---
 
+## Development Process & GitHub Workflow
+
+During initial discussions, the client preferred using spreadsheets over a traditional database to manage product data. To accommodate this requirement while keeping the system flexible, spreadsheets are used as the primary data storage solution. Although a database would typically be used for scalability, this approach was chosen to better align with the client's workflow and preferences.
+
+After gathering these requirements, user stories (labeled as **user stories** in GitHub issues) were created to define user needs and guide development.
+
+
+### GitHub Issues
+The project uses GitHub issues to track tasks, organized with labels:
+
+- **In Progress** – Issues currently being worked on  
+- **Todo** – Tasks planned for future sprints  
+- **Completed** – Issues that have been finished  
+
+---
+
 ## Technologies
 - Python (backend, Tkinter UI)  
 - React (frontend)  
@@ -48,20 +64,6 @@ Modern frontend implementation using React.
 Integration of the React frontend with the Python backend to create a full desktop application.
 
 The approach is to first implement the essential features in a simple interface, then gradually improve usability and functionality.
-
----
-
-## Development Process & GitHub Workflow
-
-### User Stories
-User stories (labeled as **user stories** in GitHub issues) were created to identify user needs and define solutions clearly.
-
-### GitHub Issues
-The project uses GitHub issues to track tasks, organized with labels:
-
-- **In Progress** – Issues currently being worked on  
-- **Todo** – Tasks planned for future sprints  
-- **Completed** – Issues that have been finished  
 
 ---
 
