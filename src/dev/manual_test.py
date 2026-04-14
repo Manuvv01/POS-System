@@ -2,7 +2,7 @@
 Manual testing for functions
 """
 
-from src.services.spreadsheet import add_row,delete_row,read_rows
+from src.services.product_storage import add_row,delete_row,read_rows
 from src.models.product import Product
 from src.utils.mappers import df_to_Product
 from src.services.check_sys import check_system

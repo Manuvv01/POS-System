@@ -8,7 +8,7 @@ import tkinter as tk
 from tkinter import Entry
 from tkinter import messagebox
 from src.models.product import Product
-from src.services.spreadsheet import add_row
+from src.services.product_storage import add_row
 from src.utils.utilities import center_window
 
 labelentryfont= ("Arial", 14)
