@@ -4,11 +4,12 @@ Inventory handlers module.
 Contains event handler functions for managing product inventory,
 including adding, updating, and deleting products through the UI.
 """
+import pandas as pd
 import tkinter as tk
 from tkinter import Entry
 from tkinter import messagebox
 from src.models.product import Product
-from src.services.product_storage import add_row
+from src.services.product_storage import add_row, read_rows
 from src.utils.utilities import center_window
 
 labelentryfont= ("Arial", 14)
@@ -167,6 +168,7 @@ def confirmation_window(dic, sku_entry, name_entry, price_entry, quantity_entry,
 #======BUSCAR BUTTON COMMANDS=========
 
 def search_product(root):
+
     popup = tk.Toplevel(root, padx= 100, pady= 80)
     popup.title("Buscar Producto")
     width = 1600
@@ -193,26 +195,30 @@ def search_product(root):
     # Search button
     search_button = tk.Button(top_frame, text="Buscar", font= button_font, width=15)
     search_button.grid(row=0, column=1, padx=5)
+    search_entry.bind("<Return>", lambda event: search(filter_options, search_entry, results_box))
 
     # Radio buttons
     filter_options = tk.StringVar(value="todos")
 
     tk.Radiobutton(top_frame, text="Todos", variable=filter_options, value="todos", font= radiobutton_font,
-                    command= lambda: choose(filter_options)) \
+                   command= lambda: search(filter_options, entry= filter_options, result_box= results_box)) \
     .grid(row=0, column=2, padx=5)
 
 
     tk.Radiobutton(top_frame, text="SKU", variable=filter_options, value="sku", font= radiobutton_font,
-                    command= lambda: choose(filter_options)) \
+                   command= lambda: search(filter_options, search_entry, results_box)) \
         .grid(row=0, column=3, padx=5)
 
     tk.Radiobutton(top_frame, text="Nombre", variable=filter_options, value="nombre", font= radiobutton_font,
-                    command= lambda: choose(filter_options)) \
+                   command= lambda: search(filter_options, search_entry, results_box)) \
         .grid(row=0, column=4, padx=5)
 
     tk.Radiobutton(top_frame, text="Categoria", variable=filter_options, value="categoria", font= radiobutton_font,
-                    command= lambda: choose(filter_options)) \
+                   command= lambda: search(filter_options, search_entry, results_box)) \
         .grid(row=0, column=5, padx=5)
+
+    # SEARCH ENTRY BINDING
+
 
 
     # ===== BOTTOM FRAME (results textbox) =====
@@ -230,13 +236,27 @@ def search_product(root):
     )
     results_box.pack(fill="both", expand=True)
 
-def choose(filter_options):
+def search(filter_options, entry, result_box):
+    columns = ''
     option = filter_options.get()
+    data= entry.get().strip()
+
+    #TODO: Complete the other statements
     if option == "todos":
-        print("Is todos")
+        columns = 'SKU'
     elif option == "sku":
-        print("Is sku")
+        data = int(data)
+        columns = 'SKU'
     elif option == "nombre":
-        print("Is nombre")
+        columns = 'Nombre'
     elif option == "categoria":
-        print("Is categoria")
+        columns = 'Categoria'
+
+    searched_products = read_rows(column=columns, data=data)  # Dataframa
+    result_box.delete("1.0", tk.END)
+
+    if searched_products is None or searched_products.empty:
+        return  # keep textbox blank
+
+    result_box.insert(tk.END, searched_products.to_string(index=False, col_space=20, justify = "center"))
+
