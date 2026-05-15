@@ -168,6 +168,19 @@ def confirmation_window(dic, sku_entry, name_entry, price_entry, quantity_entry,
 #======BUSCAR BUTTON COMMANDS=========
 
 def search_product(root):
+    """
+    Creates and displays the product search window.
+
+    The window allows users to search products stored in the spreadsheet
+    using different filters such as SKU, name, or category. Matching
+    products are displayed in a results textbox.
+
+    Args:
+        root: Parent Tkinter window.
+
+    Returns:
+        None
+    """
 
     popup = tk.Toplevel(root, padx= 100, pady= 80)
     popup.title("Buscar Producto")
@@ -237,13 +250,26 @@ def search_product(root):
     results_box.pack(fill="both", expand=True)
 
 def search(filter_options, entry, result_box):
+    """
+    Searches for products in the spreadsheet based on the selected filter
+    and displays the matching results in the results textbox.
+
+    Args:
+        filter_options: Tkinter StringVar containing the selected filter option.
+        entry: Tkinter entry widget containing the search value.
+        result_box: Tkinter text widget used to display search results.
+
+    Returns:
+        None
+    """
+    
     columns = ''
     option = filter_options.get()
     data= entry.get().strip()
 
     #TODO: Complete the other statements
     if option == "todos":
-        columns = 'SKU'
+        columns = 'SKU' #TODO: Implement a better option for Todos
     elif option == "sku":
         data = int(data)
         columns = 'SKU'
@@ -260,3 +286,6 @@ def search(filter_options, entry, result_box):
 
     result_box.insert(tk.END, searched_products.to_string(index=False, col_space=20, justify = "center"))
 
+#======BORRAR BUTTON COMMANDS=========
+
+#TODO:Implement delete functionality
