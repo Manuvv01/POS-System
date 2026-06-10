@@ -16,6 +16,7 @@ labelentryfont= ("Arial", 14)
 button_font= ("Arial", 11)
 searchbox_font= ("Courier New", 14)
 radiobutton_font= ("Arial", 16)
+current_sku = None  #SKU to find the product
 
 
 def entries_actions(event, entry1, entry2, dic, key):
@@ -206,33 +207,49 @@ def search_product(root):
     search_entry.focus_set()
 
     # Search button
-    search_button = tk.Button(top_frame, text="Buscar", font= button_font, width=15)
+    search_button = tk.Button(top_frame,
+                              text="Buscar",
+                              font= button_font,
+                              width=15,
+                              command=lambda: search(filter_options, search_entry, results_box))
     search_button.grid(row=0, column=1, padx=5)
     search_entry.bind("<Return>", lambda event: search(filter_options, search_entry, results_box))
+
+
+    #TODO Make the delete button to work
+
+    # Delete button
+    delete_button = tk.Button(
+        top_frame,
+        text="Eliminar",
+        font=button_font,
+        width=15,
+        command=lambda: delete_record(results_box)
+    )
+
+    delete_button.grid(row=0, column=2, padx=5)
 
     # Radio buttons
     filter_options = tk.StringVar(value="todos")
 
     tk.Radiobutton(top_frame, text="Todos", variable=filter_options, value="todos", font= radiobutton_font,
                    command= lambda: search(filter_options, entry= filter_options, result_box= results_box)) \
-    .grid(row=0, column=2, padx=5)
+    .grid(row=0, column=3, padx=5)
 
 
     tk.Radiobutton(top_frame, text="SKU", variable=filter_options, value="sku", font= radiobutton_font,
                    command= lambda: search(filter_options, search_entry, results_box)) \
-        .grid(row=0, column=3, padx=5)
+        .grid(row=0, column=4, padx=5)
 
     tk.Radiobutton(top_frame, text="Nombre", variable=filter_options, value="nombre", font= radiobutton_font,
                    command= lambda: search(filter_options, search_entry, results_box)) \
-        .grid(row=0, column=4, padx=5)
+        .grid(row=0, column=5, padx=5)
 
     tk.Radiobutton(top_frame, text="Categoria", variable=filter_options, value="categoria", font= radiobutton_font,
                    command= lambda: search(filter_options, search_entry, results_box)) \
-        .grid(row=0, column=5, padx=5)
+        .grid(row=0, column=6, padx=5)
 
     # SEARCH ENTRY BINDING
-
-
 
     # ===== BOTTOM FRAME (results textbox) =====
     bottom_frame = tk.Frame(popup)
@@ -262,12 +279,11 @@ def search(filter_options, entry, result_box):
     Returns:
         None
     """
-    
+
     columns = ''
     option = filter_options.get()
     data= entry.get().strip()
 
-    #TODO: Complete the other statements
     if option == "todos":
         columns = 'SKU' #TODO: Implement a better option for Todos
     elif option == "sku":
@@ -282,10 +298,45 @@ def search(filter_options, entry, result_box):
     result_box.delete("1.0", tk.END)
 
     if searched_products is None or searched_products.empty:
+        current_sku = None  #Fix
         return  # keep textbox blank
+
+    # DELETE IMPLEMENTATION
+    current_sku = searched_products.iloc[0]["SKU"]
+    print(current_sku)
+
 
     result_box.insert(tk.END, searched_products.to_string(index=False, col_space=20, justify = "center"))
 
 #======BORRAR BUTTON COMMANDS=========
 
-#TODO:Implement delete functionality
+#TODO: Fix the function
+def delete_record(result_box):
+    global current_sku
+
+    if current_sku is None:
+        messagebox.showwarning(
+            "Advertencia",
+            "No hay ningún producto seleccionado."
+        )
+        return
+
+    answer = messagebox.askyesno(
+        "Confirmar eliminación",
+        f"¿Deseas eliminar el producto con SKU {current_sku}?"
+    )
+
+    if not answer:
+        return
+
+    # TODO:
+    # delete_row_by_sku(current_sku)
+
+    result_box.delete("1.0", tk.END)
+
+    current_sku = None
+
+    messagebox.showinfo(
+        "Éxito",
+        "Producto eliminado correctamente."
+    )
