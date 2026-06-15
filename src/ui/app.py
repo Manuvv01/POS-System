@@ -42,11 +42,14 @@ def run_app():
     tk.Button(toolbar, text="Agregar", font=button_font, command= lambda:add_product(root)) \
         .grid(row=0, column=2, padx=5, pady=5)
 
-    tk.Button(toolbar, text="Buscar", font= button_font, command=  lambda: search_product(root) ) \
+    tk.Button(toolbar, text="Editar", font=button_font, command=lambda: add_product(root)) \
         .grid(row=0, column=3, padx=5, pady=5)
 
-    tk.Button(toolbar, text="Borrar", font=button_font, command=  lambda: search_product(root)) \
+    tk.Button(toolbar, text="Buscar", font= button_font, command=  lambda: search_product(root) ) \
         .grid(row=0, column=4, padx=5, pady=5)
+
+    tk.Button(toolbar, text="Borrar", font=button_font, command=  lambda: search_product(root)) \
+        .grid(row=0, column=5, padx=5, pady=5)
 
     # Grid Column and Row
     root.grid_columnconfigure(0, weight=1)  # left expands
