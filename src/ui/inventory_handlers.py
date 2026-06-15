@@ -9,7 +9,7 @@ import tkinter as tk
 from tkinter import Entry
 from tkinter import messagebox
 from src.models.product import Product
-from src.services.product_storage import add_row, read_rows
+from src.services.product_storage import add_row, read_rows, delete_row
 from src.utils.utilities import center_window
 
 labelentryfont= ("Arial", 14)
@@ -323,7 +323,6 @@ def store_sku(searched_products, current_sku, product_name):
 def delete_record(result_box,current_sku, product_name):
 
     if current_sku is None:
-        print(current_sku)
         messagebox.showwarning(
             "Advertencia",
             "No hay ningún producto seleccionado."
@@ -339,7 +338,7 @@ def delete_record(result_box,current_sku, product_name):
         return
 
     # TODO:
-    # delete_row_by_sku(current_sku)
+    delete_row(column= "Nombre", name= product_name[0])
 
     result_box.delete("1.0", tk.END)
 
