@@ -16,7 +16,8 @@ labelentryfont= ("Arial", 14)
 button_font= ("Arial", 11)
 searchbox_font= ("Courier New", 14)
 radiobutton_font= ("Arial", 16)
-current_sku = None  #SKU to find the product
+current_sku = []
+product_name = []
 
 
 def entries_actions(event, entry1, entry2, dic, key):
@@ -224,7 +225,7 @@ def search_product(root):
         text="Eliminar",
         font=button_font,
         width=15,
-        command=lambda: delete_record(results_box)
+        command=lambda: delete_record(results_box, current_sku,product_name)
     )
 
     delete_button.grid(row=0, column=2, padx=5)
@@ -297,24 +298,32 @@ def search(filter_options, entry, result_box):
     searched_products = read_rows(column=columns, data=data)  # Dataframa
     result_box.delete("1.0", tk.END)
 
-    if searched_products is None or searched_products.empty:
-        current_sku = None  #Fix
-        return  # keep textbox blank
+    # if searched_products is None or searched_products.empty:
+    #     current_sku = None  #Fix
+    #     return  # keep textbox blank
+    # else:
+    #     current_sku = searched_products.iloc[0]["SKU"]
 
-    # DELETE IMPLEMENTATION
-    current_sku = searched_products.iloc[0]["SKU"]
-    print(current_sku)
+    store_sku(searched_products,current_sku,product_name)
 
 
     result_box.insert(tk.END, searched_products.to_string(index=False, col_space=20, justify = "center"))
 
 #======BORRAR BUTTON COMMANDS=========
 
+def store_sku(searched_products, current_sku, product_name):
+    if searched_products is None or searched_products.empty:
+        current_sku = None  #Fix
+        return  # keep textbox blank
+    else:
+        current_sku.append(searched_products.iloc[0]["SKU"])
+        product_name.append(searched_products.iloc[0]["Nombre"])
+
 #TODO: Fix the function
-def delete_record(result_box):
-    global current_sku
+def delete_record(result_box,current_sku, product_name):
 
     if current_sku is None:
+        print(current_sku)
         messagebox.showwarning(
             "Advertencia",
             "No hay ningún producto seleccionado."
@@ -323,7 +332,7 @@ def delete_record(result_box):
 
     answer = messagebox.askyesno(
         "Confirmar eliminación",
-        f"¿Deseas eliminar el producto con SKU {current_sku}?"
+        f"¿Deseas eliminar el producto con el nombre de:\n {product_name[0]}"
     )
 
     if not answer:
@@ -340,3 +349,4 @@ def delete_record(result_box):
         "Éxito",
         "Producto eliminado correctamente."
     )
+
