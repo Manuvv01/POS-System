@@ -56,10 +56,16 @@ def read_rows(column, data):
     if column not in df.columns:
         raise ValueError(f"La columna '{column}' no existe.")
 
-    search_row = df.loc[df[column] == data]
+
+
+    if column == "SKU":
+        search_row = df.loc[df[column] == data] #exact match
+    else:
+        search_row = df.loc[
+            df[column].astype(str).str.contains(data, case=False, na=False)
+        ]
 
     return search_row
-
 
 
 def add_row(item):
