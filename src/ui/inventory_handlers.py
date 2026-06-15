@@ -231,24 +231,22 @@ def search_product(root):
     delete_button.grid(row=0, column=2, padx=5)
 
     # Radio buttons
-    filter_options = tk.StringVar(value="todos")
+    filter_options = tk.StringVar(value="sku")
 
-    tk.Radiobutton(top_frame, text="Todos", variable=filter_options, value="todos", font= radiobutton_font,
-                   command= lambda: search(filter_options, entry= filter_options, result_box= results_box)) \
-    .grid(row=0, column=3, padx=5)
+
 
 
     tk.Radiobutton(top_frame, text="SKU", variable=filter_options, value="sku", font= radiobutton_font,
                    command= lambda: search(filter_options, search_entry, results_box)) \
-        .grid(row=0, column=4, padx=5)
+        .grid(row=0, column=3, padx=5)
 
     tk.Radiobutton(top_frame, text="Nombre", variable=filter_options, value="nombre", font= radiobutton_font,
                    command= lambda: search(filter_options, search_entry, results_box)) \
-        .grid(row=0, column=5, padx=5)
+        .grid(row=0, column=4, padx=5)
 
     tk.Radiobutton(top_frame, text="Categoria", variable=filter_options, value="categoria", font= radiobutton_font,
                    command= lambda: search(filter_options, search_entry, results_box)) \
-        .grid(row=0, column=6, padx=5)
+        .grid(row=0, column=5, padx=5)
 
     # SEARCH ENTRY BINDING
 
@@ -282,12 +280,11 @@ def search(filter_options, entry, result_box):
     """
 
     columns = ''
+    columns_list = []
     option = filter_options.get()
     data= entry.get().strip()
 
-    if option == "todos":
-        columns = 'SKU' #TODO: Implement a better option for Todos
-    elif option == "sku":
+    if option == "sku":
         data = int(data)
         columns = 'SKU'
     elif option == "nombre":
@@ -313,7 +310,7 @@ def search(filter_options, entry, result_box):
 
 def store_sku(searched_products, current_sku, product_name):
     if searched_products is None or searched_products.empty:
-        current_sku = None  #Fix
+        current_sku = None
         return  # keep textbox blank
     else:
         current_sku.append(searched_products.iloc[0]["SKU"])
