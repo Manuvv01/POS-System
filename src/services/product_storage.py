@@ -154,5 +154,6 @@ def delete_row(column, name):
         raise ValueError(f"La columna '{column}' no existe.")
     else:
         df = df.drop(df[df[column] == name].index)
+        df.reset_index(drop=True, inplace=True) #resets the index
         df.to_excel(DATA_FILE, index=False)
         print("Linea borrada")

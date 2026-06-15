@@ -303,10 +303,8 @@ def search(filter_options, entry, result_box):
 
     store_sku(searched_products,current_sku,product_name)
 
-
     result_box.insert(tk.END, searched_products.to_string(index=False, col_space=20, justify = "center"))
 
-#======BORRAR BUTTON COMMANDS=========
 
 def store_sku(searched_products, current_sku, product_name):
     if searched_products is None or searched_products.empty:
@@ -315,6 +313,8 @@ def store_sku(searched_products, current_sku, product_name):
     else:
         current_sku.append(searched_products.iloc[0]["SKU"])
         product_name.append(searched_products.iloc[0]["Nombre"])
+
+#======BORRAR BUTTON COMMANDS=========
 
 #TODO: Fix the function
 def delete_record(result_box,current_sku, product_name):
@@ -345,4 +345,3 @@ def delete_record(result_box,current_sku, product_name):
         "Éxito",
         "Producto eliminado correctamente."
     )
-
