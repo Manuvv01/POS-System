@@ -7,4 +7,3 @@ def calculate_total(total, item):
 
 def calculate_change(money, total):
     return money - total["value"]
-

@@ -75,7 +75,7 @@ def open_payment_window(root, total, change_box):
     :param: total (dict): A dictionary containing the current total price
     :param: change_box (tk.Text): The Text widget where the calculated change will be displayed.
     """
-    #Change function
+    #Function that gives the change amount
     cmd = lambda: process_payment(total = total, change_box= change_box, popup= popup,
                                                money_entry= money_entry)
     popup = tk.Toplevel(root)
