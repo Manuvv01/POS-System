@@ -13,23 +13,7 @@ button_font= font=("Arial", 13)
 med_font= ("Arial", 20)
 totalandchangetext_font= ("Courier New", 50, "bold")
 
-def do_nothing():
-    pass
-
-
-def run_app():
-
-    cart = Cart()
-    total = {"value": 0.0}
-    file_path = {'value': ''}
-
-
-    # Window creation
-    root = tk.Tk()
-    root.title("Punto de Venta")
-    root.state("zoomed")
-
-    # ToolBar
+def tool_bar(root,file_path):
     toolbar = tk.Frame(root, pady= 5, padx= 10 )
     toolbar.grid(row=0, column=0, columnspan=2, sticky="ew")
 
@@ -50,6 +34,23 @@ def run_app():
 
     tk.Button(toolbar, text="Borrar", font=button_font, command=  lambda: search_product(root)) \
         .grid(row=0, column=5, padx=5, pady=5)
+
+
+
+def run_app():
+
+    cart = Cart()
+    total = {"value": 0.0}
+    file_path = {'value': ''}
+
+
+    # Window creation
+    root = tk.Tk()
+    root.title("Punto de Venta")
+    root.state("zoomed")
+
+    #Toolbar where CRUD are
+    tool_bar(root, file_path)
 
     # Grid Column and Row
     root.grid_columnconfigure(0, weight=1)  # left expands
@@ -72,7 +73,7 @@ def run_app():
     items_display.grid(row=0, column=0, columnspan=3, sticky="w")
     items_display.tag_configure("spaced", spacing3=10)
 
-    # Barcode row
+    #Barcode row
     barcode_frame = tk.Frame(left_frame)
     barcode_frame.grid(row=1, column=0, sticky="w", pady=10)
 
